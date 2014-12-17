@@ -2,5 +2,11 @@
 
 
 @section('application')
-    <h1>Faculty</h1>
+    <div id="FacultyApp" ng-app="FacultyApp"">
+            <div ui-view></div>
+    </div>
+@stop
+
+@section('javascript')
+<script type="text/javascript" src="/js/app/faculty/facultyApp.js"></script>
 @stop

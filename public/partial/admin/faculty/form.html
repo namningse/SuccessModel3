@@ -1,0 +1,18 @@
+<form class="form form-horizontal">
+    <formset>
+        <legend ng-if="state.current.name==='add'">New Faculty</legend>
+        <legend ng-if="state.current.name==='edit'">Update Faculty</legend>
+
+        <div class="form-group">
+            <label class="col-sm-3">Faculty English Name</label>
+            <div class="col-sm-9">
+                <input type="text" ng-model="faculty.name_en" class="form-control" placeHolder="Faculty English Name" >
+            </div>
+        </div>
+    </formset>
+
+    <div class="form-group">
+        <button class="btn btn-primary">Save</button>
+        <a class="btn btn-default" ui-sref="list">Close</a>
+    </div>
+</form>
