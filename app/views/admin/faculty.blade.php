@@ -8,5 +8,7 @@
 @stop
 
 @section('javascript')
-<script type="text/javascript" src="/js/app/faculty/facultyApp.js"></script>
+<script type="text/javascript" src="/js/app/faculty/app.js"></script>
+<script type="text/javascript" src="/js/app/faculty/services.js"></script>
+<script type="text/javascript" src="/js/app/faculty/controllers.js"></script>
 @stop

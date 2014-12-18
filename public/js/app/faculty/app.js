@@ -4,35 +4,13 @@
 
 var app = angular.module("FacultyApp", ['ui.router']);
 
-app.factory('FacultyService', function ($http) {
-
-    return {
-        getAll : function(){
-            return $http.get('/admin/api/faculty');
-        },
-
-        getById : function($id){
-            return $http.get('/admin/api/faculty/view/'+$id);
-        },
-        save: function ($faculty) {
-            return $http({
-                url: '/admin/api/faculty/save',
-                method: 'POST',
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                data: $.param($faculty)
-            });
-        }
-
-
-    }
-});
 
 
 app.config(function ($stateProvider, $urlRouterProvider) {
-    //
-    // For any unmatched url, redirect to /state1
-    //
-    // Now set up the states
+
+    $urlRouterProvider.otherwise("/list");
+
+
     $stateProvider
         .state('list', {
             url: "/list",
@@ -70,28 +48,5 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
         });
 
-    $urlRouterProvider.otherwise("/list");
-
-});
-
-
-app.controller('FacultyListController', function ($scope,$state, facultyList) {
-
-    console.log("FacultyListController");
-
-    $scope.faculties = facultyList.data.data;
-
-
-});
-
-app.controller('FacultyFormController', function ($scope,$state, faculty,FacultyService) {
-    $scope.faculty= faculty.data.data;
-    $scope.state = $state;
-
-    $scope.save = function(){
-        FacultyService.save($scope.faculty).success(function(response){
-
-        })
-    }
 
 });
