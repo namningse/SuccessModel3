@@ -4,6 +4,30 @@
 
 var app = angular.module("FacultyApp", ['ui.router']);
 
+app.factory('FacultyService', function ($http) {
+
+    return {
+        getAll : function(){
+            return $http.get('/admin/api/faculty');
+        },
+
+        getById : function($id){
+            return $http.get('/admin/api/faculty/view/'+$id);
+        },
+        save: function ($faculty) {
+            return $http({
+                url: '/admin/api/faculty/save',
+                method: 'POST',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                data: $.param($faculty)
+            });
+        }
+
+
+    }
+});
+
+
 app.config(function ($stateProvider, $urlRouterProvider) {
     //
     // For any unmatched url, redirect to /state1
@@ -17,6 +41,20 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             resolve : {
                 facultyList : function(FacultyService){
                     return FacultyService.getAll();
+                }
+            }
+        })
+        .state('add',{
+            url : '/add',
+            templateUrl: '/partial/admin/faculty/form.html',
+            controller: 'FacultyFormController',
+            resolve : {
+                faculty : function(){
+                    return {
+                        data : {
+                            data : {}
+                        }
+                    };
                 }
             }
         })
@@ -36,36 +74,24 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
 });
 
-app.factory('FacultyService', function () {
-    var $faculties = [
-        {
-            id: 0,
-            name_en: "ICT"
-        },
-        {
-            id: 1,
-            name_en: "Nurse"
-        }
-    ];
-
-    return {
-        getAll : function(){
-            return $faculties;
-        },
-
-        getById : function($id){
-            return $faculties[$id];
-        }
-
-    }
-});
 
 app.controller('FacultyListController', function ($scope,$state, facultyList) {
-    $scope.faculties = facultyList;
+
+    console.log("FacultyListController");
+
+    $scope.faculties = facultyList.data.data;
+
+
 });
 
-app.controller('FacultyFormController', function ($scope,$state, faculty) {
-    $scope.faculty= faculty;
+app.controller('FacultyFormController', function ($scope,$state, faculty,FacultyService) {
+    $scope.faculty= faculty.data.data;
     $scope.state = $state;
+
+    $scope.save = function(){
+        FacultyService.save($scope.faculty).success(function(response){
+
+        })
+    }
 
 });
