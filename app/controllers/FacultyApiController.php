@@ -28,6 +28,6 @@ class FacultyApiController extends ApiBaseController {
             $faculty = Faculty::firstOrNew(Input::all());
         }
         $faculty->save();
-        return $this->ok($faculty);
+        return $this->ok($faculty,"Faculty [$id] has been save successfully.");
     }
 }

@@ -40,6 +40,11 @@
     <script src="/components/angular/angular.min.js"></script>
     <script src="/components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="/components/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script src="/components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="/components/angular-loading-spinner/spin.js"></script>
+    <script src="/components/angular-loading-spinner/angular-spinner.min.js"></script>
+    <script src="/components/angular-loading-spinner/angular-loading-spinner.js"></script>
+
 
 
 
