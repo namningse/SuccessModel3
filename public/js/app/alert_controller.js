@@ -6,6 +6,14 @@
 app.controller('AlertController',function($scope,$rootScope,$timeout){
     $scope.alerts = [];
 
+    $scope.pushAlert = function(alert){
+        $scope.alerts.push(alert);
+
+        $timeout(function(){
+            $scope.alerts.splice(0,1);
+        },3000);
+    }
+
     $rootScope.$on("AlertSuccess",function(response,args){
 
         var data = args.data;
@@ -15,14 +23,18 @@ app.controller('AlertController',function($scope,$rootScope,$timeout){
                 type : "success",
                 msg : args.data.message
             }
-            $scope.alerts.push(alert);
+            $scope.pushAlert(alert);
+        }
+    });
 
-            $timeout(function(){
-                $scope.alerts.splice(0,1);
-            },3000);
+    $rootScope.$on("AlertError",function(response,args){
 
+        var alert = {
+            type : "danger",
+            msg : "There is something wrong, please contact administrator."
         }
 
+        $scope.pushAlert(alert);
     })
 
 });

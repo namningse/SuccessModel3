@@ -9,6 +9,7 @@
 
     <link href="/components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="/css/dashboard.css" rel="stylesheet"/>
+    <link href="/css/style.css" rel="stylesheet"/>
 
 </head>
 
@@ -23,15 +24,15 @@
     <a class="navbar-brand" href="#">SuccessModel Control Panel</a>
 </nav>
 
-<div class="row">
-    <div class="col-sm-3 col-md-2 sidebar">
+<div class="row fill"">
+    <div class="col-sm-3 col-md-2 sidebar fill">
         <ul class="nav nav-sidebar">
             <li class="{{Request::path() == 'admin' ? 'active' : '';}}"><a href="/admin">Dashboard</a></li>
             <li class="{{Request::path() == 'admin/faculty' ? 'active' : '';}}"><a href="/admin/faculty">Faculty</a></li>
         </ul>
     </div>
 
-    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main fill">
         @yield('application')
     </div>
 </div>
@@ -44,9 +45,6 @@
     <script src="/components/angular-loading-spinner/spin.js"></script>
     <script src="/components/angular-loading-spinner/angular-spinner.min.js"></script>
     <script src="/components/angular-loading-spinner/angular-loading-spinner.js"></script>
-
-
-
 
     @yield('javascript')
 

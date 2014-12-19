@@ -20,6 +20,14 @@ app.factory('FacultyService', function ($http) {
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 data: $.param($faculty)
             });
+        },
+        delete : function($faculty){
+            return $http({
+                url: '/admin/api/faculty/delete',
+                method: 'POST',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                data: $.param($faculty)
+            })
         }
 
 

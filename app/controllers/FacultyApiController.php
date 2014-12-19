@@ -28,6 +28,17 @@ class FacultyApiController extends ApiBaseController {
             $faculty = Faculty::firstOrNew(Input::all());
         }
         $faculty->save();
+        $id = $faculty->id;
         return $this->ok($faculty,"Faculty [$id] has been save successfully.");
+    }
+
+    public function postDelete(){
+        if (Input::has('id')){
+            $id = (int) Input::get('id');
+            $faculty = Faculty::find($id);
+            $faculty->delete();
+
+            return $this->ok(null,"Faculty [$id] has been delete successfully ");
+        }
     }
 }

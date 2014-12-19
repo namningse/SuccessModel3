@@ -2,14 +2,16 @@
 
 
 @section('application')
-    <div id="FacultyApp" ng-app="FacultyApp">
-        <span us-spinner="{radius:30, width:8, length: 16}"></span>
+    <div id="FacultyApp" ng-app="FacultyApp" class="fill">
 
-        <div class="row" ng-controller="AlertController">
+
+        <div ng-controller="AlertController">
           <alert ng-repeat="alert in alerts" type="{{alert.type}}">{{alert.msg}}</alert>
         </div>
 
         <div ui-view></div>
+
+        <span us-spinner="{radius:30, width:8, length: 16}"></span>
     </div>
 @stop
 
