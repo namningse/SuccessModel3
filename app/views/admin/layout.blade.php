@@ -25,15 +25,19 @@
 </nav>
 
 <div class="row fill"">
-    <div class="col-sm-3 col-md-2 sidebar fill">
+    <div class="col-sm-3 col-md-2 sidebar fill" id="sidebar" ng-controller="SideBarController">
         <ul class="nav nav-sidebar">
-            <li class="{{Request::path() == 'admin' ? 'active' : '';}}"><a href="/admin">Dashboard</a></li>
-            <li class="{{Request::path() == 'admin/faculty' ? 'active' : '';}}"><a href="/admin/faculty">Faculty</a></li>
+            <li ng-class="{active : $path === 'admin' }">
+                <a href="/admin">Dashboard</a>
+            </li>
+            <li ng-class="{active : $path === 'admin/faculty'} ">
+                <a href="/admin/faculty">Faculty</a>
+            </li>
         </ul>
     </div>
 
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main fill">
-        @yield('application')
+            @yield('application')
     </div>
 </div>
 
@@ -47,7 +51,13 @@
     <script src="/components/angular-loading-spinner/angular-loading-spinner.js"></script>
 
     @yield('javascript')
-
+    <script type="text/javascript">
+        var sidebarApp = angular.module('SideBarApp',[]);
+        sidebarApp.controller("SideBarController",function($scope,$location) {
+            var $path = $scope.$path = '<?php echo Request::path()?>'
+            console.log($path);
+        });
+        angular.bootstrap($("#sidebar"),["SideBarApp"]);
+    </script>
 </body>
-
 </html>

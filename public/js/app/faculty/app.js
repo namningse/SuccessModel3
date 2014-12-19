@@ -46,6 +46,11 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
 
+        })
+        .state('cover',{
+            url: '/cover/:id',
+            templateUrl: '/partial/admin/faculty/cover.html',
+            controller: 'FacultyCoverController'
         });
 
 

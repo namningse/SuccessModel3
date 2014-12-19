@@ -59,3 +59,7 @@ app.controller('FacultyFormController', function ($scope,$state, faculty,Faculty
         })
     }
 });
+
+app.controller('FacultyCoverController',function($scope,FacultyService){
+
+});
