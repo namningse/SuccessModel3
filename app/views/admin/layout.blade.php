@@ -49,13 +49,12 @@
     <script src="/components/angular-loading-spinner/spin.js"></script>
     <script src="/components/angular-loading-spinner/angular-spinner.min.js"></script>
     <script src="/components/angular-loading-spinner/angular-loading-spinner.js"></script>
-
+    <script src="/components/holderjs/holder.js"></script>
     @yield('javascript')
     <script type="text/javascript">
         var sidebarApp = angular.module('SideBarApp',[]);
         sidebarApp.controller("SideBarController",function($scope,$location) {
             var $path = $scope.$path = '<?php echo Request::path()?>'
-            console.log($path);
         });
         angular.bootstrap($("#sidebar"),["SideBarApp"]);
     </script>

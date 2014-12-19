@@ -60,6 +60,7 @@ app.controller('FacultyFormController', function ($scope,$state, faculty,Faculty
     }
 });
 
-app.controller('FacultyCoverController',function($scope,FacultyService){
+app.controller('FacultyCoverController',function($scope,FacultyService,faculty){
+    $scope.faculty= faculty.data.data;
 
 });

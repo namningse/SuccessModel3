@@ -50,8 +50,21 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state('cover',{
             url: '/cover/:id',
             templateUrl: '/partial/admin/faculty/cover.html',
-            controller: 'FacultyCoverController'
+            controller: 'FacultyCoverController',
+            resolve : {
+                faculty : function(FacultyService,$stateParams){
+                    return FacultyService.getById($stateParams.id)
+                }
+            }
         });
 
 
+});
+
+app.directive('holderFix', function () {
+    return {
+        link: function (scope, element, attrs) {
+            Holder.run({ images: element[0], nocss: true });
+        }
+    };
 });
