@@ -1,0 +1,32 @@
+<div class="" style="min-height: 100%;">
+
+    <h2>News Listing</h2>
+
+    <div style="display: block; padding-top: 10px; padding-bottom: 10px;">
+        <a ui-sref="add" class="btn btn-primary">Create News</a>
+    </div>
+
+    <table class="table table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>header</th>
+            <th>Aciton</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr ng-repeat="news in newsList">
+            <td>{{news.id}}</td>
+            <td>{{news.header}}</td>
+            <td>
+                <a class="btn btn-info" ui-sref="cover({id : news.id})">Cover</a>
+                <a class="btn btn-default" ui-sref="photo({id : news.id})">Photo</a>
+                <a class="btn btn-primary" ui-sref="edit({ id : news.id})">Edit</a>
+                <button class="btn btn-danger" ng-click="open('lg',news)">Delete</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>

@@ -1,0 +1,46 @@
+<div class="">
+    <h2>{{faculty.name_en}}</h2>
+
+    <form ng-submit="save()" class="form form-horizontal">
+        <formset>
+            <div class="form-group">
+                <div class=" col-sm-12">
+                    <div class="input-group" style="margin-bottom: 10px;">
+                              <span class="input-group-btn">
+                                <button style="width: 100px;" class="btn btn-primary" type="button" ng-click="selectImage()">Select Files</button>
+                              </span>
+                        <input type="text" ng-model="upload_image.filename" class="form-control">
+                              <span class="input-group-btn">
+                              <button ng-show="upload_image" ng-click="removeImage()" class="btn btn-danger">Remove</button>
+                              </span>
+                    </div><!-- /input-group -->
+
+                    <input id="file" style="display: none;" type="file" ng-model="upload_image" name="file" base-sixty-four-input>
+                </div>
+
+            </div>
+        </formset>
+        <formset class="form-group col-sm-12">
+            <div ng-show="upload_image">
+                <img ng-show="upload_image.base64" style="width:851px;height: 315px;" ng-src="data:{{upload_image.filetype}};base64,{{upload_image.base64}}" alt="">
+                <img ng-hide="upload_image.filename" data-src="holder.js/851x315" holder-fix/>
+            </div>
+
+            <div ng-show="cover_image != null">
+                <img ng-src="{{cover_image.url}}" style="width: 851px; height: 315px;"/>
+            </div>
+
+        </formset>
+
+        <formset>
+            <div class="form-group col-sm-12">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <a class="btn btn-default" ui-sref="list">Close</a>
+            </div>
+        </formset>
+    </form>
+
+
+
+
+</div>

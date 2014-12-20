@@ -11,4 +11,7 @@ class HomeController extends BaseController {
 		return View::make('admin.faculty');
 	}
 
+    public function showAdminNews(){
+        return View::make('admin.news');
+    }
 }
