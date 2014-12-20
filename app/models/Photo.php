@@ -17,4 +17,8 @@ class Photo extends NeoEloquent{
 
     //protected $fillable = ['name_en', 'name_th'];
 
+    public function faculty(){
+        return $this->belongsTo('Faculty',"PHOTO");
+    }
+
 } 

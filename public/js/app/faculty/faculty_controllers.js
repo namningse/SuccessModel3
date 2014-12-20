@@ -35,7 +35,7 @@ app.controller('FacultyListController', function ($scope,$state,$modal,facultyLi
 
 });
 
-app.controller('FacultyDeleteController',function($scope,$modalInstance,FacultyService,faculty) {
+app.controller('FacultyDeleteController',function($scope,$modalInstance,faculty) {
 
     $scope.faculty = faculty;
 
@@ -100,9 +100,40 @@ app.controller('FacultyCoverController',function($scope,FacultyService,faculty,c
 
 });
 
+app.controller('FacultyPhotoDeleteController',function($scope,$modalInstance,photo){
+    $scope.photo = photo;
 
-app.controller('FacultyPhotoController',function($scope,FacultyService,faculty,photos){
+    $scope.ok = function(){
+        $modalInstance.close($scope.photo);
+    }
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    }
+});
+
+app.controller('FacultyPhotoController',function($scope,$modal,FacultyService,faculty,photos){
     $scope.faculty= faculty.data.data;
     $scope.photos = photos.data.data;
 
+    $scope.open = function (size,photo) {
+
+        var modalInstance = $modal.open({
+            templateUrl: '/partial/admin/faculty/faculty_photo_delete.html',
+            controller: 'FacultyPhotoDeleteController',
+            size: size,
+            resolve: {
+                photo: function () {
+                    return photo
+                }
+            }
+        });
+
+        modalInstance.result.then(function(result){
+            FacultyService.deletePhoto($scope.faculty.id,result).success(function(response){
+                index = $scope.photos.indexOf(result);
+                $scope.photos.splice(index,index+1);
+            });
+        })
+    }
 });

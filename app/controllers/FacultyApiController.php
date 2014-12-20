@@ -66,6 +66,8 @@ class FacultyApiController extends ApiBaseController {
 
         $faculty->photos()->detach([$pid]);
         $photo->delete();
+
+        return $this->ok($photo,"Photo id $photo->id has been deleted.");
     }
 
     public function getCover($id){

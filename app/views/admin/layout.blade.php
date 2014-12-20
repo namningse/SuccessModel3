@@ -56,11 +56,13 @@
     <script src="/components/holderjs/holder.js"></script>
     @yield('javascript')
     <script type="text/javascript">
+
         var sidebarApp = angular.module('SideBarApp',[]);
-        sidebarApp.controller("SideBarController",function($scope,$location) {
+        sidebarApp.controller("SideBarController",function($scope) {
             var $path = $scope.$path = '<?php echo Request::path()?>'
         });
         angular.bootstrap($("#sidebar"),["SideBarApp"]);
+
     </script>
 </body>
 </html>
