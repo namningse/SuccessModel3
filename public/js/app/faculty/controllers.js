@@ -60,7 +60,49 @@ app.controller('FacultyFormController', function ($scope,$state, faculty,Faculty
     }
 });
 
-app.controller('FacultyCoverController',function($scope,FacultyService,faculty){
+app.controller('FacultyCoverController',function($scope,FacultyService,faculty,cover){
     $scope.faculty= faculty.data.data;
+    $scope.cover_image = cover.data.data;
+    $scope.upload_image = null;
+
+    $scope.selectImage = function(){
+        $("#file").click();
+    }
+
+    $scope.$watch("upload_image", function(newValue, oldValue) {
+
+        if(newValue !== null){
+
+            if(newValue.filetype.split('/')[0] !== 'image'){
+                alert('Please select only image file');
+                $scope.upload_image = null;
+
+            }else {
+                $scope.cover_image = null;
+            }
+        }else {
+            $scope.cover_image = cover.data.data;
+        }
+    });
+
+    $scope.removeImage = function(){
+        $scope.upload_image = null;
+    }
+
+    $scope.save = function() {
+        FacultyService.saveCover($scope.faculty,$scope.upload_image).success(function(response){
+            cover.data.data = response.data;
+            $scope.cover_image = cover.data.data;
+            $scope.upload_image = null;
+
+        })
+    }
+
+});
+
+
+app.controller('FacultyPhotoController',function($scope,FacultyService,faculty,photos){
+    $scope.faculty= faculty.data.data;
+    $scope.photos = photos.data.data;
 
 });

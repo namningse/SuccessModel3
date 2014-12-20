@@ -1,0 +1,32 @@
+<div class="">
+    <h2>{{faculty.name_en}}</h2>
+
+    <table class="table table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>filename</th>
+            <th>Aciton</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr ng-repeat="photo in photos">
+            <td>{{photo.id}}</td>
+            <td>{{photo.filename}}</td>
+            <td>
+                <button class="btn btn-danger" ng-click="open('lg',photo)">Delete</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="row">
+
+        <div class="form-group col-sm-12">
+            <a class="btn btn-default" ui-sref="list">Close</a>
+        </div>
+        
+    </div>
+
+
+</div>

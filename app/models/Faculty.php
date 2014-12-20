@@ -17,4 +17,12 @@ class Faculty extends NeoEloquent{
 
     protected $fillable = ['name_en', 'name_th'];
 
+    public function cover(){
+        return $this->hasOne('Photo','COVER');
+    }
+
+    public function photos(){
+        return $this->hasMany('Photo','PHOTO');
+    }
+
 } 

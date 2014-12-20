@@ -41,4 +41,44 @@ class FacultyApiController extends ApiBaseController {
             return $this->ok(null,"Faculty [$id] has been delete successfully ");
         }
     }
+
+    public function postSaveCover($id){
+
+        if (Input::has('filename')) {
+            $faculty = Faculty::find((int)$id);
+            $filename = Input::get('filename');
+            $filetype = Input::get('filetype');
+            $base64 = Input::get('base64');
+
+            $photo = $this->createPhoto($faculty->id, $filename, $filetype, $base64);
+            $faculty->cover()->save($photo);
+            $faculty->photos()->save($photo);
+
+            return $this->ok($photo, "Cover Photo has been updated.");
+        }
+    }
+
+    public function postDeletePhoto($id){
+
+        $pid = (int) Input::get('id');
+        $faculty = Faculty::find((int)$id);
+        $photo = Photo::find($pid);
+
+        $faculty->photos()->detach([$pid]);
+        $photo->delete();
+    }
+
+    public function getCover($id){
+        $id = (int) $id;
+        $faculty = Faculty::find($id);
+        $cover = $faculty->cover()->first();
+        return $this->ok($cover);
+    }
+
+    public function getPhotos($id){
+        $id = (int) $id;
+        $faculty = Faculty::find($id);
+        $cover = $faculty->photos()->get();
+        return $this->ok($cover);
+    }
 }

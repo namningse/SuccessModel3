@@ -49,6 +49,7 @@
     <script src="/components/angular-loading-spinner/spin.js"></script>
     <script src="/components/angular-loading-spinner/angular-spinner.min.js"></script>
     <script src="/components/angular-loading-spinner/angular-loading-spinner.js"></script>
+    <script src="/components/angular-base64-upload/dist/angular-base64-upload.min.js"></script>
     <script src="/components/holderjs/holder.js"></script>
     @yield('javascript')
     <script type="text/javascript">

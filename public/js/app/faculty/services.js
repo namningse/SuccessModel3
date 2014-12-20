@@ -28,6 +28,28 @@ app.factory('FacultyService', function ($http) {
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 data: $.param($faculty)
             })
+        },
+        saveCover : function($faculty,$image){
+            return $http({
+                url: '/admin/api/faculty/save-cover/'+$faculty.id,
+                method: 'POST',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                data: $.param($image)
+            })
+        },
+        getCover : function($id){
+            return $http({
+                url: '/admin/api/faculty/cover/'+$id,
+                method: 'get',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            })
+        },
+        getPhotos : function($id){
+            return $http({
+                url: '/admin/api/faculty/photos/'+$id,
+                method: 'get',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            })
         }
 
 

@@ -2,7 +2,7 @@
  * Created by chaow on 12/17/2014 AD.
  */
 
-var app = angular.module("FacultyApp", ['ui.router','ngLoadingSpinner','ui.bootstrap']);
+var app = angular.module("FacultyApp", ['ui.router','ngLoadingSpinner','ui.bootstrap','naif.base64']);
 
 
 
@@ -54,7 +54,24 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             resolve : {
                 faculty : function(FacultyService,$stateParams){
                     return FacultyService.getById($stateParams.id)
+                },
+                cover : function(FacultyService,$stateParams){
+                    return FacultyService.getCover($stateParams.id)
                 }
+            }
+        })
+        .state('photo',{
+            url: '/photo/:id',
+            templateUrl: '/partial/admin/faculty/photo.html',
+            controller: 'FacultyPhotoController',
+            resolve : {
+                faculty : function(FacultyService,$stateParams){
+                    return FacultyService.getById($stateParams.id)
+                },
+                photos : function(FacultyService,$stateParams){
+                    return FacultyService.getPhotos($stateParams.id)
+                }
+
             }
         });
 
