@@ -100,9 +100,43 @@ app.controller('NewsCoverController',function($scope,NewsService,news,cover){
 
 });
 
+app.controller('NewsPhotoDeleteController',function($scope,$modalInstance,photo){
+    $scope.photo = photo;
 
-app.controller('NewsPhotoController',function($scope,NewsService,news,photos){
+    $scope.ok = function(){
+        $modalInstance.close($scope.photo);
+    }
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    }
+});
+
+
+app.controller('NewsPhotoController',function($scope,$modal,NewsService,news,photos){
     $scope.news= news.data.data;
     $scope.photos = photos.data.data;
+
+
+    $scope.open = function (size,photo) {
+
+        var modalInstance = $modal.open({
+            templateUrl: '/partial/admin/news/news_photo_delete.html',
+            controller: 'NewsPhotoDeleteController',
+            size: size,
+            resolve: {
+                photo: function () {
+                    return photo
+                }
+            }
+        });
+
+        modalInstance.result.then(function(result){
+            NewsService.deletePhoto($scope.news.id,result).success(function(response){
+                index = $scope.photos.indexOf(result);
+                $scope.photos.splice(index,index+1);
+            });
+        })
+    }
 
 });

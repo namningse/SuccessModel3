@@ -50,8 +50,14 @@ app.factory('NewsService', function ($http) {
                 method: 'get',
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             })
+        },
+        deletePhoto : function($id,$photo){
+            return $http({
+                url: '/admin/api/news/delete-photo/'+$id,
+                method: 'post',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                data: $.param($photo)
+            })
         }
-
-
     }
 });

@@ -66,6 +66,8 @@ class NewsApiController extends ApiBaseController {
 
         $news->photos()->detach([$pid]);
         $photo->delete();
+
+        return $this->ok($photo,"Photo id $photo->id has been deleted.");
     }
 
     public function getCover($id){
