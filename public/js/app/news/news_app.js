@@ -14,7 +14,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('list', {
             url: "/list",
-            templateUrl: "/partial/admin/news/list.html",
+            templateUrl: "/partial/admin/news/news_list.html",
             controller: 'NewsListController',
             resolve : {
                 newsList : function(NewsService){
@@ -24,7 +24,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         })
         .state('add',{
             url : '/add',
-            templateUrl: '/partial/admin/news/form.html',
+            templateUrl: '/partial/admin/news/news_form.html',
             controller: 'NewsFormController',
             resolve : {
                 news : function(){
@@ -38,7 +38,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         })
         .state('edit', {
             url: '/edit/:id',
-            templateUrl: '/partial/admin/news/form.html',
+            templateUrl: '/partial/admin/news/news_form.html',
             controller: 'NewsFormController',
             resolve : {
                 news : function(NewsService,$stateParams){
@@ -49,7 +49,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         })
         .state('cover',{
             url: '/cover/:id',
-            templateUrl: '/partial/admin/news/cover.html',
+            templateUrl: '/partial/admin/news/news_cover.html',
             controller: 'NewsCoverController',
             resolve : {
                 news : function(NewsService,$stateParams){
@@ -62,7 +62,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         })
         .state('photo',{
             url: '/photo/:id',
-            templateUrl: '/partial/admin/news/photo.html',
+            templateUrl: '/partial/admin/news/news_photo.html',
             controller: 'NewsPhotoController',
             resolve : {
                 news : function(NewsService,$stateParams){

@@ -11,7 +11,7 @@ app.controller('FacultyListController', function ($scope,$state,$modal,facultyLi
     $scope.open = function (size,faculty) {
 
         var modalInstance = $modal.open({
-            templateUrl: '/partial/admin/faculty/delete.html',
+            templateUrl: '/partial/admin/faculty/faculty_delete.html',
             controller: 'FacultyDeleteController',
             size: size,
             resolve: {

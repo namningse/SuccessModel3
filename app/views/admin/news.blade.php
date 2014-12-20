@@ -16,10 +16,10 @@
 @stop
 
 @section('javascript')
-<script type="text/javascript" src="/js/app/news/app.js"></script>
+<script type="text/javascript" src="/js/app/news/news_app.js"></script>
 <script type="text/javascript" src="/js/app/http_interceptor.js"></script>
-<script type="text/javascript" src="/js/app/news/services.js"></script>
-<script type="text/javascript" src="/js/app/news/controllers.js"></script>
+<script type="text/javascript" src="/js/app/news/news_services.js"></script>
+<script type="text/javascript" src="/js/app/news/news_controllers.js"></script>
 <script type="text/javascript" src="/js/app/alert_controller.js"></script>
 
 @stop

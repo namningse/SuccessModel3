@@ -14,7 +14,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('list', {
             url: "/list",
-            templateUrl: "/partial/admin/faculty/list.html",
+            templateUrl: "/partial/admin/faculty/faculty_list.html",
             controller: 'FacultyListController',
             resolve : {
                 facultyList : function(FacultyService){
@@ -24,7 +24,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         })
         .state('add',{
             url : '/add',
-            templateUrl: '/partial/admin/faculty/form.html',
+            templateUrl: '/partial/admin/faculty/faculty_form.html',
             controller: 'FacultyFormController',
             resolve : {
                 faculty : function(){
@@ -38,7 +38,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         })
         .state('edit', {
             url: '/edit/:id',
-            templateUrl: '/partial/admin/faculty/form.html',
+            templateUrl: '/partial/admin/faculty/faculty_form.html',
             controller: 'FacultyFormController',
             resolve : {
                 faculty : function(FacultyService,$stateParams){
@@ -49,7 +49,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         })
         .state('cover',{
             url: '/cover/:id',
-            templateUrl: '/partial/admin/faculty/cover.html',
+            templateUrl: '/partial/admin/faculty/faculty_cover.html',
             controller: 'FacultyCoverController',
             resolve : {
                 faculty : function(FacultyService,$stateParams){
@@ -62,7 +62,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         })
         .state('photo',{
             url: '/photo/:id',
-            templateUrl: '/partial/admin/faculty/photo.html',
+            templateUrl: '/partial/admin/faculty/faculty_photo.html',
             controller: 'FacultyPhotoController',
             resolve : {
                 faculty : function(FacultyService,$stateParams){

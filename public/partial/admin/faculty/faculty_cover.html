@@ -21,12 +21,14 @@
             </div>
         </formset>
         <formset class="form-group col-sm-12">
+
+            <img ng-hide="((upload_image != null) || (cover_image != null))" data-src="holder.js/851x315" holder-fix/>
+
             <div ng-show="upload_image">
                 <img ng-show="upload_image.base64" style="width:851px;height: 315px;" ng-src="data:{{upload_image.filetype}};base64,{{upload_image.base64}}" alt="">
-                <img ng-hide="upload_image.filename" data-src="holder.js/851x315" holder-fix/>
             </div>
 
-            <div ng-show="cover_image != null">
+            <div ng-show="cover_image">
                 <img ng-src="{{cover_image.url}}" style="width: 851px; height: 315px;"/>
             </div>
 

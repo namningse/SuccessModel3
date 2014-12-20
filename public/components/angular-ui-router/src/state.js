@@ -329,7 +329,7 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
    * // ...
    *
    * $state.go('home');
-   * // Auto-populates list and item views with /partials/home/contact/list.html,
+   * // Auto-populates list and item views with /partials/home/contact/faculty_list.html,
    * // and /partials/home/contact/item.html, respectively.
    * </pre>
    *
