@@ -14,4 +14,8 @@ class HomeController extends BaseController {
     public function showAdminNews(){
         return View::make('admin.news');
     }
+
+    public function showAdminResearcher(){
+        return View::make('admin.researcher');
+    }
 }

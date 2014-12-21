@@ -1,0 +1,105 @@
+<?php
+
+class ResearcherApiController extends ApiBaseController {
+
+	public function getIndex(){
+        $researchers = Researcher::with([])->get();
+
+
+
+        return $this->ok($researchers);
+	}
+
+    public function getView($id){
+        $id = (int) $id;
+        $researcher = Researcher::with([])->find($id);
+        if ($researcher){
+            return $this->ok($researcher);
+        }else {
+            return $this->error(null,"Researcher id:$id is invalid");
+        }
+    }
+
+    public function postSave(){
+
+
+        if(Input::has('id')){
+            $id = (int) Input::get('id');
+            $researcher = Researcher::find($id);
+            $researcher->update(Input::all());
+
+        }else {
+            $researcher = Researcher::firstOrNew(Input::all());
+        }
+        $researcher->save();
+        $id = $researcher->id;
+        return $this->ok($researcher,"Researcher [$id] has been save successfully.");
+    }
+
+    public function postDelete(){
+        if (Input::has('id')){
+            $id = (int) Input::get('id');
+            $researcher = Researcher::find($id);
+            $researcher->delete();
+
+            return $this->ok(null,"Researcher [$id] has been delete successfully ");
+        }
+    }
+
+    public function postSaveCover($id){
+
+        if (Input::has('filename')) {
+            $researcher = Researcher::find((int)$id);
+            $filename = Input::get('filename');
+            $filetype = Input::get('filetype');
+            $base64 = Input::get('base64');
+
+            $photo = $this->createPhoto($researcher->id, $filename, $filetype, $base64);
+            $researcher->cover()->save($photo);
+            $researcher->photos()->save($photo);
+
+            return $this->ok($photo, "Cover Photo has been updated.");
+        }
+    }
+
+    public function postUploadPhoto($id){
+
+        $id = (int)$id;
+        $researcher = Researcher::find((int)$id);
+
+        if(Input::hasFile('file')){
+            $file = Input::file('file');
+            $photo = $this->createNormalPhoto($id,$file);
+        }
+        $researcher->photos()->save($photo);
+
+        return $this->ok($photo,"Photo has been upload successfully.");
+    }
+
+    public function postDeletePhoto($id){
+
+        $pid = (int) Input::get('id');
+        $researcher = Researcher::find((int)$id);
+        $photo = Photo::find($pid);
+
+        $researcher->photos()->detach([$pid]);
+
+        $photo->delete();
+
+        return $this->ok($photo,"Photo id $photo->id has been deleted.");
+    }
+
+    public function getCover($id){
+        $id = (int) $id;
+        $researcher = Researcher::find($id);
+        $cover = $researcher->cover()->first();
+        return $this->ok($cover);
+    }
+
+    public function getPhotos($id){
+        $id = (int) $id;
+        $researcher = Researcher::find($id);
+        $cover = $researcher->photos()->get();
+        return $this->ok($cover);
+    }
+}

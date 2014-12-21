@@ -1,0 +1,32 @@
+<div class="" style="min-height: 100%;">
+
+    <h2>Researcher Listing</h2>
+
+    <div style="display: block; padding-top: 10px; padding-bottom: 10px;">
+        <a ui-sref="add" class="btn btn-primary">Create New Researcher</a>
+    </div>
+
+    <table class="table table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Aciton</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr ng-repeat="researcher in researchers">
+            <td>{{researcher.id}}</td>
+            <td>{{researcher.title}}{{researcher.firstname}} {{researcher.lastname}}</td>
+            <td>
+                <a class="btn btn-info" ui-sref="cover({id : researcher.id})">Cover</a>
+                <a class="btn btn-default" ui-sref="photo({id : researcher.id})">Photo</a>
+                <a class="btn btn-primary" ui-sref="edit({ id : researcher.id})">Edit</a>
+                <button class="btn btn-danger" ng-click="open('lg',researcher)">Delete</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>

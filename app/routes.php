@@ -23,6 +23,8 @@ Route::get('/', function()
 Route::get('/admin','HomeController@showAdminDashboard');
 Route::get('/admin/faculty','HomeController@showAdminFaculty');
 Route::get('/admin/news','HomeController@showAdminNews');
+Route::get('/admin/researcher','HomeController@showAdminResearcher');
 
 Route::controller('/admin/api/faculty','FacultyApiController');
 Route::controller('/admin/api/news','NewsApiController');
+Route::controller('/admin/api/researcher','ResearcherApiController');
