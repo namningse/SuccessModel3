@@ -4,6 +4,9 @@ class FacultyApiController extends ApiBaseController {
 
 	public function getIndex(){
         $faculties = Faculty::with([])->get();
+
+
+
         return $this->ok($faculties);
 	}
 
@@ -24,6 +27,7 @@ class FacultyApiController extends ApiBaseController {
             $id = (int) Input::get('id');
             $faculty = Faculty::find($id);
             $faculty->update(Input::all());
+
         }else {
             $faculty = Faculty::firstOrNew(Input::all());
         }
@@ -58,13 +62,28 @@ class FacultyApiController extends ApiBaseController {
         }
     }
 
+    public function postUploadPhoto($id){
+
+        $id = (int)$id;
+        $faculty = Faculty::find((int)$id);
+
+        if(Input::hasFile('file')){
+            $file = Input::file('file');
+            $photo = $this->createNormalPhoto($id,$file);
+        }
+        $faculty->photos()->save($photo);
+
+        return $this->ok($photo,"Photo has been upload successfully.");
+    }
+
     public function postDeletePhoto($id){
 
         $pid = (int) Input::get('id');
         $faculty = Faculty::find((int)$id);
         $photo = Photo::find($pid);
-
+        
         $faculty->photos()->detach([$pid]);
+
         $photo->delete();
 
         return $this->ok($photo,"Photo id $photo->id has been deleted.");

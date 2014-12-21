@@ -1,25 +1,44 @@
 <div class="">
     <h2>{{faculty.name_en}}</h2>
 
-    <table class="table table-bordered table-hover">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>filename</th>
-            <th>Aciton</th>
-        </tr>
-        </thead>
 
-        <tbody>
-        <tr ng-repeat="photo in photos">
-            <td>{{photo.id}}</td>
-            <td>{{photo.filename}}</td>
-            <td>
-                <button class="btn btn-danger" ng-click="open('lg',photo)">Delete</button>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <formset>
+        <legend>Upload Image</legend>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="well my-drop-zone" nv-file-drop nv-file-over="" uploader="uploader">
+                    Base drop zone
+                </div>
+            </div>
+        </div>
+
+    </formset>
+
+    <formset>
+        <legend>Photo List</legend>
+
+        <table class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>filename</th>
+                <th>Aciton</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr ng-repeat="photo in photos">
+                <td>{{photo.id}}</td>
+                <td>{{photo.filename}}</td>
+                <td>
+                    <button class="btn btn-danger" ng-click="open('lg',photo)">Delete</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </formset>
+
     <div class="row">
 
         <div class="form-group col-sm-12">

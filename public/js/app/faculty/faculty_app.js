@@ -2,7 +2,7 @@
  * Created by chaow on 12/17/2014 AD.
  */
 
-var app = angular.module("FacultyApp", ['ui.router','ngLoadingSpinner','ui.bootstrap','naif.base64']);
+var app = angular.module("FacultyApp", ['ui.router','ngLoadingSpinner','ui.bootstrap','naif.base64','angularFileUpload']);
 
 
 
