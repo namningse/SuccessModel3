@@ -138,9 +138,7 @@ app.controller('FacultyPhotoController',function($scope,$modal,FileUploader,Facu
     }
 
 
-    var uploader = $scope.uploader = new FileUploader({
-        url: '/admin/api/faculty/upload-photo/' + $scope.faculty.id
-    });
+    var uploader = $scope.uploader = FacultyService.getUploader($scope.faculty.id);
 
     uploader.filters.push({
         name: 'imageFilter',

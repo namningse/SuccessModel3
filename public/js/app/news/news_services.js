@@ -3,7 +3,7 @@
  */
 
 
-app.factory('NewsService', function ($http) {
+app.factory('NewsService', function ($http,FileUploader) {
 
     return {
         getAll : function(){
@@ -58,6 +58,12 @@ app.factory('NewsService', function ($http) {
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 data: $.param($photo)
             })
+        },
+        getUploader : function($id){
+            uploader = new FileUploader({
+                url: '/admin/api/news/upload-photo/' + $id
+            });
+            return uploader;
         }
     }
 });

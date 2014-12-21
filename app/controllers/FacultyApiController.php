@@ -81,7 +81,7 @@ class FacultyApiController extends ApiBaseController {
         $pid = (int) Input::get('id');
         $faculty = Faculty::find((int)$id);
         $photo = Photo::find($pid);
-        
+
         $faculty->photos()->detach([$pid]);
 
         $photo->delete();

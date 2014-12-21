@@ -58,6 +58,20 @@ class NewsApiController extends ApiBaseController {
         }
     }
 
+    public function postUploadPhoto($id){
+
+        $id = (int)$id;
+        $news = News::find((int)$id);
+
+        if(Input::hasFile('file')){
+            $file = Input::file('file');
+            $photo = $this->createNormalPhoto($id,$file);
+        }
+        $news->photos()->save($photo);
+
+        return $this->ok($photo,"Photo has been upload successfully.");
+    }
+
     public function postDeletePhoto($id){
 
         $pid = (int) Input::get('id');
