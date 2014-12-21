@@ -15,7 +15,9 @@ class Researcher extends NeoEloquent{
 
     protected $label = ['Researcher'];
 
-    protected $fillable = ['title', 'firstname','lastname'];
+    protected $fillable = ['title','firstname','lastname'];
+
+    protected $guarded = array('id', 'faculty');
 
     public function cover(){
         return $this->hasOne('Photo','COVER');
@@ -26,7 +28,7 @@ class Researcher extends NeoEloquent{
     }
 
     public function faculty(){
-        return $this->belongsTo("Faculty");
+        return $this->belongsTo("Faculty","HAS");
     }
 
 } 

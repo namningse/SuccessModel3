@@ -11,6 +11,7 @@
         <tr>
             <th>Id</th>
             <th>Name</th>
+            <th>Faculty</th>
             <th>Aciton</th>
         </tr>
         </thead>
@@ -19,6 +20,7 @@
         <tr ng-repeat="researcher in researchers">
             <td>{{researcher.id}}</td>
             <td>{{researcher.title}}{{researcher.firstname}} {{researcher.lastname}}</td>
+            <td>{{researcher.faculty.name_en}}<br/>{{researcher.faculty.name_th}}</td>
             <td>
                 <a class="btn btn-info" ui-sref="cover({id : researcher.id})">Cover</a>
                 <a class="btn btn-default" ui-sref="photo({id : researcher.id})">Photo</a>

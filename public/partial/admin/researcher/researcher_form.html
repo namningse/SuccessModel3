@@ -25,7 +25,17 @@
                         <input type="text" ng-model="researcher.lastname" class="form-control" placeHolder="Last Name" >
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Faculty : </label>
+                    <div class="col-sm-10">
+                        <input type="text" ng-model="researcher.faculty" placeholder="Faculty" typeahead="faculty as faculty.name_en for faculty in searchFaculty($viewValue)" class="form-control">
+                    </div>
+                </div>
+
             </formset>
+
+
 
 
             <formset>

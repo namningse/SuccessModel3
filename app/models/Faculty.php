@@ -25,4 +25,8 @@ class Faculty extends NeoEloquent{
         return $this->hasMany('Photo','PHOTO');
     }
 
+    public function researchers(){
+        return $this->hasMany('Researcher','HAS');
+    }
+
 } 

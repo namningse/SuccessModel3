@@ -49,7 +49,7 @@ app.controller('ResearcherDeleteController',function($scope,$modalInstance,resea
 
 });
 
-app.controller('ResearcherFormController', function ($scope,$state, researcher,ResearcherService) {
+app.controller('ResearcherFormController', function ($scope,$state, researcher,FacultyService,ResearcherService) {
     $scope.researcher= researcher.data.data;
     $scope.state = $state;
 
@@ -57,6 +57,12 @@ app.controller('ResearcherFormController', function ($scope,$state, researcher,R
         ResearcherService.save($scope.researcher).success(function(response){
 
         })
+    }
+
+    $scope.searchFaculty = function($value){
+        return FacultyService.getSearch($value).then(function (response){
+            return response.data;
+        });
     }
 });
 

@@ -3,7 +3,7 @@
 class ResearcherApiController extends ApiBaseController {
 
 	public function getIndex(){
-        $researchers = Researcher::with([])->get();
+        $researchers = Researcher::with(['faculty'])->get();
 
 
 
@@ -12,7 +12,7 @@ class ResearcherApiController extends ApiBaseController {
 
     public function getView($id){
         $id = (int) $id;
-        $researcher = Researcher::with([])->find($id);
+        $researcher = Researcher::with(['faculty'])->find($id);
         if ($researcher){
             return $this->ok($researcher);
         }else {
@@ -26,13 +26,23 @@ class ResearcherApiController extends ApiBaseController {
         if(Input::has('id')){
             $id = (int) Input::get('id');
             $researcher = Researcher::find($id);
-            $researcher->update(Input::all());
+            $researcher->update(Input::except('faculty'));
 
         }else {
-            $researcher = Researcher::firstOrNew(Input::all());
+            $researcher = Researcher::firstOrNew(Input::except('faculty'));
         }
+
         $researcher->save();
         $id = $researcher->id;
+
+        if(Input::has('faculty')){
+            $fid = (int) Input::get('faculty.id');
+            $faculty = Faculty::find($fid);
+            $researcher->faculty()->associate($faculty)->save();
+        }else {
+            $faculty = $researcher->faculty()->first();
+            $faculty->researchers()->detach([$researcher->id]);
+        }
         return $this->ok($researcher,"Researcher [$id] has been save successfully.");
     }
 

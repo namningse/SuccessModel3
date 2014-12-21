@@ -19,6 +19,7 @@
 <script type="text/javascript" src="/js/app/researcher/researcher_app.js"></script>
 <script type="text/javascript" src="/js/app/http_interceptor.js"></script>
 <script type="text/javascript" src="/js/app/researcher/researcher_services.js"></script>
+<script type="text/javascript" src="/js/app/faculty/faculty_services.js"></script>
 <script type="text/javascript" src="/js/app/researcher/researcher_controllers.js"></script>
 <script type="text/javascript" src="/js/app/alert_controller.js"></script>
 

@@ -64,7 +64,16 @@ app.factory('FacultyService', function ($http,FileUploader) {
                 url: '/admin/api/faculty/upload-photo/' + $id
             });
             return uploader;
+        },
+        getSearch : function($text){
+            return $http({
+                url: '/admin/api/faculty/search-faculty/'+$text,
+                method: 'get',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+
+            })
         }
+
 
 
     }
