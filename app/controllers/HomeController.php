@@ -18,4 +18,8 @@ class HomeController extends BaseController {
     public function showAdminResearcher(){
         return View::make('admin.researcher');
     }
+
+    public function showAdminProject(){
+        return View::make('admin.project');
+    }
 }

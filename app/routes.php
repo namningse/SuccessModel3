@@ -24,7 +24,9 @@ Route::get('/admin','HomeController@showAdminDashboard');
 Route::get('/admin/faculty','HomeController@showAdminFaculty');
 Route::get('/admin/news','HomeController@showAdminNews');
 Route::get('/admin/researcher','HomeController@showAdminResearcher');
+Route::get('/admin/project','HomeController@showAdminProject');
 
 Route::controller('/admin/api/faculty','FacultyApiController');
 Route::controller('/admin/api/news','NewsApiController');
 Route::controller('/admin/api/researcher','ResearcherApiController');
+Route::controller('/admin/api/project','ProjectApiController');

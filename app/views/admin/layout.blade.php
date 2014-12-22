@@ -42,6 +42,10 @@
             <li ng-class="{active : $path === 'admin/researcher'} ">
                 <a href="/admin/researcher">Researcher</a>
             </li>
+
+            <li ng-class="{active : $path === 'admin/project'} ">
+                <a href="/admin/project">Project</a>
+            </li>
         </ul>
     </div>
 
