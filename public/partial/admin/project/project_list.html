@@ -22,10 +22,14 @@
             <td>{{project.name_en}}</td>
             <td>{{project.faculty.name_en}}</td>
             <td>
-                <a class="btn btn-info" ui-sref="cover({id : project.id})">Cover</a>
-                <a class="btn btn-default" ui-sref="photo({id : project.id})">Photo</a>
-                <a class="btn btn-primary" ui-sref="edit({ id : project.id})">Edit</a>
-                <button class="btn btn-danger" ng-click="open('lg',project)">Delete</button>
+
+                <div style="display: block;">
+                    <a class="btn btn-info" ui-sref="cover({id : project.id})">Cover</a>
+                    <a class="btn btn-default" ui-sref="photo({id : project.id})">Photo</a>
+                    <a class="btn btn-primary" ui-sref="edit({ id : project.id})">Edit</a>
+                    <button class="btn btn-danger" ng-click="open('lg',project)">Delete</button>
+                </div>
+
             </td>
         </tr>
         </tbody>

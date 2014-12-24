@@ -23,6 +23,10 @@ class Researcher extends NeoEloquent{
         return $this->hasOne('Photo','COVER');
     }
 
+    public function profilePhoto(){
+        return $this->hasOne('Photo','PROFILEPHOTO');
+    }
+
     public function photos(){
         return $this->hasMany('Photo','PHOTO');
     }

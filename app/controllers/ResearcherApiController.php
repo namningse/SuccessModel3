@@ -72,6 +72,21 @@ class ResearcherApiController extends ApiBaseController {
         }
     }
 
+    public function postSaveProfilePhoto($id){
+        if (Input::has('filename')) {
+            $researcher = Researcher::find((int)$id);
+            $filename = Input::get('filename');
+            $filetype = Input::get('filetype');
+            $base64 = Input::get('base64');
+
+            $photo = $this->createPhoto($researcher->id, $filename, $filetype, $base64);
+            $researcher->profilePhoto()->save($photo);
+            $researcher->photos()->save($photo);
+
+            return $this->ok($photo, "Cover Photo has been updated.");
+        }
+    }
+
     public function postUploadPhoto($id){
 
         $id = (int)$id;
@@ -104,6 +119,13 @@ class ResearcherApiController extends ApiBaseController {
         $researcher = Researcher::find($id);
         $cover = $researcher->cover()->first();
         return $this->ok($cover);
+    }
+
+    public function getProfilePhoto($id){
+        $id = (int) $id;
+        $researcher = Researcher::find($id);
+        $profilePhoto = $researcher->profilePhoto()->first();
+        return $this->ok($profilePhoto);
     }
 
     public function getPhotos($id){

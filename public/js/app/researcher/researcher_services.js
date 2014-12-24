@@ -44,6 +44,21 @@ app.factory('ResearcherService', function ($http,FileUploader) {
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             })
         },
+        saveProfilePhoto : function($researcher,$image){
+            return $http({
+                url: '/admin/api/researcher/save-profile-photo/'+$researcher.id,
+                method: 'POST',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                data: $.param($image)
+            })
+        },
+        getProfilePhoto : function($id){
+            return $http({
+                url: '/admin/api/researcher/profile-photo/'+$id,
+                method: 'get',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            })
+        },
         getPhotos : function($id){
             return $http({
                 url: '/admin/api/researcher/photos/'+$id,
