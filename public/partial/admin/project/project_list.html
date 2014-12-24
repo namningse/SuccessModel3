@@ -11,6 +11,7 @@
         <tr>
             <th>Id</th>
             <th>Name English</th>
+            <th>Faculty</th>
             <th>Aciton</th>
         </tr>
         </thead>
@@ -19,6 +20,7 @@
         <tr ng-repeat="project in projects">
             <td>{{project.id}}</td>
             <td>{{project.name_en}}</td>
+            <td>{{project.faculty.name_en}}</td>
             <td>
                 <a class="btn btn-info" ui-sref="cover({id : project.id})">Cover</a>
                 <a class="btn btn-default" ui-sref="photo({id : project.id})">Photo</a>

@@ -3,16 +3,13 @@
 class ProjectApiController extends ApiBaseController {
 
 	public function getIndex(){
-        $projects = Project::with([])->get();
-
-
-
+        $projects = Project::with(['faculty'])->get();
         return $this->ok($projects);
 	}
 
     public function getView($id){
         $id = (int) $id;
-        $project = Project::with([])->find($id);
+        $project = Project::with(['faculty'])->find($id);
         if ($project){
             return $this->ok($project);
         }else {
@@ -32,6 +29,17 @@ class ProjectApiController extends ApiBaseController {
             $project = Project::firstOrNew(Input::all());
         }
         $project->save();
+
+        if(Input::has('faculty')){
+            $fid = (int) Input::get('faculty.id');
+            $faculty = Faculty::find($fid);
+
+            $project->setFaculty($faculty);
+
+        }else {
+            $project->setFaculty(null);
+        }
+
         $id = $project->id;
         return $this->ok($project,"Project [$id] has been save successfully.");
     }

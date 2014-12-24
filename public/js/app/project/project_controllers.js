@@ -49,7 +49,7 @@ app.controller('ProjectDeleteController',function($scope,$modalInstance,project)
 
 });
 
-app.controller('ProjectFormController', function ($scope,$state, project,ProjectService) {
+app.controller('ProjectFormController', function ($scope,$state, project,FacultyService,ProjectService) {
     $scope.project= project.data.data;
     $scope.state = $state;
 
@@ -57,6 +57,12 @@ app.controller('ProjectFormController', function ($scope,$state, project,Project
         ProjectService.save($scope.project).success(function(response){
 
         })
+    }
+
+    $scope.searchFaculty = function($value){
+        return FacultyService.getSearch($value).then(function (response){
+            return response.data;
+        });
     }
 });
 

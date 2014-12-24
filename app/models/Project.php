@@ -33,4 +33,16 @@ class Project extends NeoEloquent{
         return $this->hasMany('Researcher','HAS');
     }
 
+
+    public function setFaculty($faculty){
+        if ($faculty == null){
+            $faculty = $this->faculty()->first();
+            if($faculty != null){
+                $faculty->researchers()->detach([$this->id]);
+            }
+        }else {
+            $this->faculty()->associate($faculty)->save();
+        }
+    }
+
 } 
