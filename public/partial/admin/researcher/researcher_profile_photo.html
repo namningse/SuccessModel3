@@ -9,27 +9,27 @@
                               <span class="input-group-btn">
                                 <button style="width: 100px;" class="btn btn-primary" type="button" ng-click="selectImage()">Select Files</button>
                               </span>
-                        <input type="text" ng-model="upload_image.filename" class="form-control">
+                        <input type="text" ng-model="profilePhoto_upload.filename" class="form-control">
                               <span class="input-group-btn">
-                              <button type="button" ng-show="upload_image" ng-click="removeImage()" class="btn btn-danger">Remove</button>
+                              <button type="button" ng-show="profilePhoto_upload" ng-click="removeImage()" class="btn btn-danger">Remove</button>
                               </span>
                     </div><!-- /input-group -->
 
-                    <input id="file" style="display: none;" type="file" ng-model="upload_image" name="file" base-sixty-four-input>
+                    <input id="file" style="display: none;" type="file" ng-model="profilePhoto_upload" name="file" base-sixty-four-input>
                 </div>
 
             </div>
         </formset>
         <formset class="form-group col-sm-12">
 
-            <img ng-hide="((upload_image != null) || (cover_image != null))" data-src="holder.js/851x315" holder-fix/>
+            <img ng-hide="((profilePhoto_upload != null) || (profilePhoto_current != null))" data-src="holder.js/168x168" holder-fix/>
 
-            <div ng-show="upload_image">
-                <img ng-show="upload_image.base64" style="width:851px;height: 315px;" ng-src="data:{{upload_image.filetype}};base64,{{upload_image.base64}}" alt="">
+            <div ng-show="profilePhoto_upload">
+                <img ng-show="profilePhoto_upload.base64" style="width:168px;height: 168px;" ng-src="data:{{profilePhoto_upload.filetype}};base64,{{profilePhoto_upload.base64}}" alt="">
             </div>
 
-            <div ng-show="cover_image">
-                <img ng-src="{{cover_image.url}}" style="width: 851px; height: 315px;"/>
+            <div ng-show="profilePhoto_current">
+                <img ng-src="{{profilePhoto_current.url}}" style="width: 168px; height: 168px;"/>
             </div>
 
         </formset>

@@ -106,6 +106,51 @@ app.controller('ResearcherCoverController',function($scope,ResearcherService,res
 
 });
 
+
+app.controller('ResearcherProfilePhotoController',function($scope,ResearcherService,researcher,profilePhoto){
+    $scope.researcher= researcher.data.data;
+    $scope.profilePhoto_current = profilePhoto.data.data;
+    $scope.profilePhoto_upload = null;
+
+
+    $scope.selectImage = function(){
+        $("#file").click();
+    }
+
+
+    $scope.$watch("profilePhoto_upload", function(newValue, oldValue) {
+
+        if(newValue !== null){
+
+            if(newValue.filetype.split('/')[0] !== 'image'){
+                alert('Please select only image file');
+                $scope.profilePhoto_upload = null;
+
+            }else {
+                $scope.profilePhoto_current = null;
+            }
+        }else {
+            $scope.profilePhoto_current = profilePhoto.data.data;
+        }
+    });
+
+    $scope.removeImage = function(){
+        $scope.profilePhoto_upload = null;
+    }
+
+    $scope.save = function() {
+        ResearcherService.saveProfilePhoto($scope.researcher,$scope.profilePhoto_upload).success(function(response){
+            profilePhoto.data.data = response.data;
+            $scope.profilePhoto_current = profilePhoto.data.data;
+            $scope.profilePhoto_upload = null;
+
+        })
+    }
+
+});
+
+
+
 app.controller('ResearcherPhotoDeleteController',function($scope,$modalInstance,photo){
     $scope.photo = photo;
 

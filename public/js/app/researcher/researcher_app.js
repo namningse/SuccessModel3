@@ -60,6 +60,19 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+        .state('profilePhoto',{
+            url: '/profile-photo/:id',
+            templateUrl: '/partial/admin/researcher/researcher_profile_photo.html',
+            controller: 'ResearcherProfilePhotoController',
+            resolve : {
+                researcher : function(ResearcherService,$stateParams){
+                    return ResearcherService.getById($stateParams.id)
+                },
+                profilePhoto : function(ResearcherService,$stateParams){
+                    return ResearcherService.getProfilePhoto($stateParams.id)
+                }
+            }
+        })
         .state('photo',{
             url: '/photo/:id',
             templateUrl: '/partial/admin/researcher/researcher_photo.html',
