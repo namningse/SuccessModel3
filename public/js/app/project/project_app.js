@@ -2,7 +2,7 @@
  * Created by chaow on 12/17/2014 AD.
  */
 
-var app = angular.module("ProjectApp", ['ui.router','ngLoadingSpinner','ui.bootstrap','naif.base64','angularFileUpload']);
+var app = angular.module("ProjectApp", ['ui.router','ngLoadingSpinner','ui.bootstrap','naif.base64','angularFileUpload','flow']);
 
 
 
@@ -70,6 +70,20 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 },
                 photos : function(ProjectService,$stateParams){
                     return ProjectService.getPhotos($stateParams.id)
+                }
+
+            }
+        })
+        .state('fulltext',{
+            url: '/fulltext/:id',
+            templateUrl: '/partial/admin/project/project_fulltext.html',
+            controller: 'ProjectFullTextController',
+            resolve : {
+                project : function(ProjectService,$stateParams){
+                    return ProjectService.getById($stateParams.id)
+                },
+                fulltext : function(ProjectService,$stateParams){
+                    return ProjectService.getFullText($stateParams.id)
                 }
 
             }

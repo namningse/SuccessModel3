@@ -65,12 +65,25 @@ app.factory('ProjectService', function ($http,FileUploader) {
             });
             return uploader;
         },
+        getFullTextUploader : function($id){
+            uploader = new FileUploader({
+                url: '/admin/api/project/save-fulltext/' + $id
+            });
+            return uploader;
+        },
         getSearch : function($text){
             return $http({
                 url: '/admin/api/project/search-project/'+$text,
                 method: 'get',
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
+            })
+        },
+        getFullText : function($id){
+            return $http({
+                url: '/admin/api/project/full-text/'+$id,
+                method: 'get',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             })
         }
 

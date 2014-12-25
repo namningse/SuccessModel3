@@ -135,4 +135,29 @@ class ProjectApiController extends ApiBaseController {
             ->get();
         return Response::json($fuculty);
     }
+
+    public function postSaveFulltext($id){
+
+        $id = (int)$id;
+        $project = Project::find((int)$id);
+
+        if(Input::hasFile('file')){
+            $file = Input::file('file');
+            $fulltextfile = $this->createFile($id,$file);
+            $fulltextfile->save();
+        }
+
+        $project->fulltext()->save($fulltextfile);
+
+        return $this->ok($fulltextfile,"FullText File has been upload successfully.");
+    }
+
+    public function getFullText($id){
+        $id = (int)$id;
+        $project = Project::find((int)$id);
+
+        $fulltext = $project->fulltext()->first();
+
+        return $this->ok($fulltext);
+    }
 }

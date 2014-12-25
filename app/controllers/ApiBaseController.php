@@ -55,6 +55,39 @@ class ApiBaseController extends Controller {
         }
     }
 
+    protected function createFile($nodeid,$file){
+
+        $fileurlpath = "/up/node/$nodeid/";
+        $uppath = public_path()."/up/";
+        $nodepath = $uppath."node/";
+        $idpath = $nodepath.$nodeid;
+
+        if (!File::exists($uppath)){
+            File::makeDirectory($uppath);
+        }
+        if (!File::exists($nodepath)){
+            File::makeDirectory($nodepath);
+        }
+        if (!File::exists($idpath)){
+            File::makeDirectory($idpath);
+        }
+
+        $filename = $file->getClientOriginalName();
+        $filename = str_random(10)."_".$filename;
+        $filetype = $file->getMimeType();
+        $destpath = $idpath;
+
+
+        $upfile = new FileProject();
+        $upfile->filename = $filename;
+        $upfile->filetype = $filetype;
+        $upfile->url = $fileurlpath.$filename;
+
+        $file->move($destpath,$filename);
+
+        return $upfile;
+    }
+
     protected function createNormalPhoto($nodeid,$file){
 
         $fileurlpath = "/up/node/$nodeid/";

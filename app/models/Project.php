@@ -45,4 +45,8 @@ class Project extends NeoEloquent{
         }
     }
 
+    public function fulltext(){
+        return $this->hasOne("FileProject","FULLTEXT");
+    }
+
 } 

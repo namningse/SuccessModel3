@@ -1,0 +1,35 @@
+<div class="">
+    <h2>{{project.name_en}}</h2>
+
+
+    <formset>
+        <legend>Upload Image</legend>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="well my-drop-zone" nv-file-drop nv-file-over="" uploader="uploader">
+                    Base drop zone
+                </div>
+            </div>
+        </div>
+
+    </formset>
+
+    <formset>
+        <legend>Fulltext File</legend>
+
+        <ul>
+            <li><a href="{{fulltext.url}}">{{fulltext.filename}}</a></li>
+        </ul>
+    </formset>
+
+    <div class="row">
+
+        <div class="form-group col-sm-12">
+            <a class="btn btn-default" ui-sref="list">Close</a>
+        </div>
+
+    </div>
+
+
+</div>
