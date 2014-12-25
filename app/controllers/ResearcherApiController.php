@@ -134,4 +134,17 @@ class ResearcherApiController extends ApiBaseController {
         $cover = $researcher->photos()->get();
         return $this->ok($cover);
     }
+
+    public function getSearch($text) {
+
+        $researcher = Researcher::whereNull('deleted_at')
+            ->whereNested(function($query) use ($text) {
+                $query->orWhere('firstname', '=~', ".*(?i)$text.*");
+                $query->orWhere('lastname', '=~', ".*(?i)$text.*");
+                $query->orWhere('title', '=~', ".*(?i)$text.*");
+            })
+            ->take(10)
+            ->get();
+        return Response::json($researcher);
+    }
 }

@@ -22,8 +22,10 @@
 <script type="text/javascript" src="/js/app/http_interceptor.js"></script>
 
 <!-- Services -->
+
 <script type="text/javascript" src="/js/app/project/project_services.js"></script>
 <script type="text/javascript" src="/js/app/faculty/faculty_services.js"></script>
+<script type="text/javascript" src="/js/app/researcher/researcher_services.js"></script>
 
 <!-- Controllers -->
 <script type="text/javascript" src="/js/app/project/project_controllers.js"></script>

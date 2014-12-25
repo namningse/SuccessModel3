@@ -49,7 +49,7 @@ app.controller('ProjectDeleteController',function($scope,$modalInstance,project)
 
 });
 
-app.controller('ProjectFormController', function ($scope,$state, project,FacultyService,ProjectService) {
+app.controller('ProjectFormController', function ($scope,$state, project,FacultyService,ProjectService,ResearcherService) {
     $scope.project= project.data.data;
     $scope.state = $state;
 
@@ -64,6 +64,26 @@ app.controller('ProjectFormController', function ($scope,$state, project,Faculty
             return response.data;
         });
     }
+
+    $scope.searchResearcher = function($value){
+        return ResearcherService.getSearch($value).then(function(response){
+            return response.data;
+        })
+    }
+
+    $scope.addResearcher = function(value){
+        if(value){
+            if(!$scope.project.researchers){
+                $scope.project.researchers = [];
+            }
+
+            $scope.project.researchers.push(value);
+
+            console.log($scope.project.researchers);
+        }
+
+    }
+
 });
 
 app.controller('ProjectCoverController',function($scope,ProjectService,project,cover){

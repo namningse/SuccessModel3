@@ -79,6 +79,13 @@ app.factory('ResearcherService', function ($http,FileUploader) {
                 url: '/admin/api/researcher/upload-photo/' + $id
             });
             return uploader;
+        },
+        getSearch : function($text){
+            return $http({
+                url: '/admin/api/researcher/search/'+$text,
+                method: 'get',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            })
         }
 
 

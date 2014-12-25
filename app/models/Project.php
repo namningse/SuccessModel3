@@ -15,7 +15,7 @@ class Project extends NeoEloquent{
 
     protected $label = ['Project'];
 
-    protected $fillable = ['name_en', 'name_th'];
+    protected $fillable = ['name_en', 'name_th','executive_summary'];
 
     public function cover(){
         return $this->hasOne('Photo','COVER');
