@@ -20,6 +20,7 @@
             <td>{{faculty.id}}</td>
             <td>{{faculty.name_en}}</td>
             <td>
+                <a class="btn btn-info" ui-sref="logo({id : faculty.id})">Logo</a>
                 <a class="btn btn-info" ui-sref="cover({id : faculty.id})">Cover</a>
                 <a class="btn btn-default" ui-sref="photo({id : faculty.id})">Photo</a>
                 <a class="btn btn-primary" ui-sref="edit({ id : faculty.id})">Edit</a>

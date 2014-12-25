@@ -139,7 +139,8 @@ app.controller('ResearcherProfilePhotoController',function($scope,ResearcherServ
     }
 
     $scope.save = function() {
-        ResearcherService.saveProfilePhoto($scope.researcher,$scope.profilePhoto_upload).success(function(response){
+        ResearcherService.saveProfilePhoto(
+            $scope.researcher,$scope.profilePhoto_upload).success(function(response){
             profilePhoto.data.data = response.data;
             $scope.profilePhoto_current = profilePhoto.data.data;
             $scope.profilePhoto_upload = null;

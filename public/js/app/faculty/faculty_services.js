@@ -72,6 +72,21 @@ app.factory('FacultyService', function ($http,FileUploader) {
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
             })
+        },
+        saveLogo : function($faculty,$image){
+            return $http({
+                url: '/admin/api/faculty/save-logo/'+$faculty.id,
+                method: 'POST',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                data: $.param($image)
+            })
+        },
+        getLogo : function($id){
+            return $http({
+                url: '/admin/api/faculty/logo/'+$id,
+                method: 'get',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            })
         }
 
 

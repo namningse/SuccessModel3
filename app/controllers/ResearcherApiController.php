@@ -66,7 +66,7 @@ class ResearcherApiController extends ApiBaseController {
 
             $photo = $this->createPhoto($researcher->id, $filename, $filetype, $base64);
             $researcher->cover()->save($photo);
-            $researcher->photos()->save($photo);
+            //$researcher->photos()->save($photo);
 
             return $this->ok($photo, "Cover Photo has been updated.");
         }
@@ -81,7 +81,7 @@ class ResearcherApiController extends ApiBaseController {
 
             $photo = $this->createPhoto($researcher->id, $filename, $filetype, $base64);
             $researcher->profilePhoto()->save($photo);
-            $researcher->photos()->save($photo);
+            //$researcher->photos()->save($photo);
 
             return $this->ok($photo, "Cover Photo has been updated.");
         }

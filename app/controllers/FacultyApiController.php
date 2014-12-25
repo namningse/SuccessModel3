@@ -56,7 +56,7 @@ class FacultyApiController extends ApiBaseController {
 
             $photo = $this->createPhoto($faculty->id, $filename, $filetype, $base64);
             $faculty->cover()->save($photo);
-            $faculty->photos()->save($photo);
+            //$faculty->photos()->save($photo);
 
             return $this->ok($photo, "Cover Photo has been updated.");
         }
@@ -113,5 +113,28 @@ class FacultyApiController extends ApiBaseController {
             ->take(10)
             ->get();
         return Response::json($fuculty);
+    }
+
+
+    public function postSaveLogo($id){
+        if (Input::has('filename')) {
+            $faculty = Faculty::find((int)$id);
+            $filename = Input::get('filename');
+            $filetype = Input::get('filetype');
+            $base64 = Input::get('base64');
+
+            $photo = $this->createPhoto($faculty->id, $filename, $filetype, $base64);
+            $faculty->logo()->save($photo);
+            //$researcher->photos()->save($photo);
+
+            return $this->ok($photo, "Cover Photo has been updated.");
+        }
+    }
+
+    public function getLogo($id){
+        $id = (int) $id;
+        $faculty = Faculty::find($id);
+        $profilePhoto = $faculty->logo()->first();
+        return $this->ok($profilePhoto);
     }
 }

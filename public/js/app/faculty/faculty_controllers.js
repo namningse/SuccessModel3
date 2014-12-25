@@ -184,3 +184,50 @@ app.controller('FacultyPhotoController',function($scope,$modal,FileUploader,Facu
         console.info('onCompleteAll');
     };
 });
+
+
+app.controller('FacultyLogoController',function($scope,FacultyService,faculty,logo){
+
+    $scope.faculty= faculty.data.data;
+    $scope.facultyLogo_current = logo.data.data;
+    $scope.facultyLogo_upload = null;
+
+
+
+
+    $scope.selectImage = function(){
+        $("#file").click();
+    }
+
+
+    $scope.$watch("facultyLogo_upload", function(newValue, oldValue) {
+
+        if(newValue !== null){
+
+            if(newValue.filetype.split('/')[0] !== 'image'){
+                alert('Please select only image file');
+                $scope.facultyLogo_upload = null;
+
+            }else {
+                $scope.facultyLogo_current = null;
+            }
+        }else {
+            $scope.facultyLogo_current = logo.data.data;
+        }
+    });
+
+    $scope.removeImage = function(){
+        $scope.facultyLogo_upload = null;
+    }
+
+    $scope.save = function() {
+        FacultyService.saveLogo(
+            $scope.faculty,$scope.facultyLogo_upload).success(function(response){
+                logo.data.data = response.data;
+                $scope.facultyLogo_current = logo.data.data;
+                $scope.facultyLogo_upload = null;
+
+            })
+    }
+
+});

@@ -1,0 +1,48 @@
+<div class="">
+    <h2> {{faculty.name_en}} </h2>
+
+    <form ng-submit="save()" class="form form-horizontal">
+        <formset>
+            <div class="form-group">
+                <div class=" col-sm-12">
+                    <div class="input-group" style="margin-bottom: 10px;">
+                              <span class="input-group-btn">
+                                <button style="width: 100px;" class="btn btn-primary" type="button" ng-click="selectImage()">Select Files</button>
+                              </span>
+                        <input type="text" ng-model="facultyLogo_upload.filename" class="form-control">
+                              <span class="input-group-btn">
+                              <button type="button" ng-show="facultyLogo_upload" ng-click="removeImage()" class="btn btn-danger">Remove</button>
+                              </span>
+                    </div><!-- /input-group -->
+
+                    <input id="file" style="display: none;" type="file" ng-model="facultyLogo_upload" name="file" base-sixty-four-input>
+                </div>
+
+            </div>
+        </formset>
+        <formset class="form-group col-sm-12">
+
+            <img ng-hide="((facultyLogo_upload != null) || (facultyLogo_current != null))" data-src="holder.js/168x168" holder-fix/>
+
+            <div ng-show="facultyLogo_upload">
+                <img ng-show="facultyLogo_upload.base64" style="width:168px;height: 168px;" ng-src="data:{{facultyLogo_upload.filetype}};base64,{{facultyLogo_upload.base64}}" alt="">
+            </div>
+
+            <div ng-show="facultyLogo_current">
+                <img ng-src="{{facultyLogo_current.url}}" style="width: 168px; height: 168px;"/>
+            </div>
+
+        </formset>
+
+        <formset>
+            <div class="form-group col-sm-12">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <a class="btn btn-default" ui-sref="list">Close</a>
+            </div>
+        </formset>
+    </form>
+
+
+
+
+</div>

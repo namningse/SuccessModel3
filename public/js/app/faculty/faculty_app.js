@@ -73,6 +73,19 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
 
             }
+        })
+        .state('logo',{
+            url: '/logo/:id',
+            templateUrl: '/partial/admin/faculty/faculty_logo_photo.html',
+            controller: 'FacultyLogoController',
+            resolve : {
+                faculty : function(FacultyService,$stateParams){
+                    return FacultyService.getById($stateParams.id)
+                },
+                logo : function(FacultyService,$stateParams){
+                    return FacultyService.getLogo($stateParams.id)
+                }
+            }
         });
 
 
