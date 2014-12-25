@@ -40,8 +40,12 @@ class ResearcherApiController extends ApiBaseController {
             $faculty = Faculty::find($fid);
             $researcher->faculty()->associate($faculty)->save();
         }else {
+
             $faculty = $researcher->faculty()->first();
-            $faculty->researchers()->detach([$researcher->id]);
+            if($faculty){
+                $faculty->researchers()->detach([$researcher->id]);
+            }
+
         }
         return $this->ok($researcher,"Researcher [$id] has been save successfully.");
     }
