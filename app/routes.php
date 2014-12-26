@@ -30,3 +30,14 @@ Route::controller('/admin/api/faculty','FacultyApiController');
 Route::controller('/admin/api/news','NewsApiController');
 Route::controller('/admin/api/researcher','ResearcherApiController');
 Route::controller('/admin/api/project','ProjectApiController');
+
+
+Route::group(array(), function()
+{
+	header("Access-Control-Allow-Origin: *");
+
+	Route::controller('/m/v1/faculty','FacultyMobileApiController');
+	Route::controller('/m/v1/news','NewsMobileApiController');
+	Route::controller('/m/v1/researcher','ResearcherMobileApiController');
+	Route::controller('/m/v1/project','ProjectMobileApiController');
+});
