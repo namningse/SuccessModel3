@@ -3,13 +3,13 @@
 class ProjectMobileApiController extends ApiBaseController {
 
 	public function getIndex(){
-        $projects = Project::with(['faculty','researchers'])->get();
+        $projects = Project::with(['faculty','researchers','cover'])->get();
         return $this->ok($projects);
 	}
 
     public function getView($id){
         $id = (int) $id;
-        $project = Project::with(['faculty','researchers'])->find($id);
+        $project = Project::with(['faculty.logo','researchers','cover'])->find($id);
         if ($project){
             return $this->ok($project);
         }else {

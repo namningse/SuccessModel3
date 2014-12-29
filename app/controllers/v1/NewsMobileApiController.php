@@ -3,13 +3,13 @@
 class NewsMobileApiController extends ApiBaseController {
 
 	public function getIndex(){
-        $newsList = News::with([])->get();
+        $newsList = News::with(['photos'])->get();
         return $this->ok($newsList);
 	}
 
     public function getView($id){
         $id = (int) $id;
-        $news = News::with([])->find($id);
+        $news = News::with(['photos'])->find($id);
         if ($news){
             return $this->ok($news);
         }else {
