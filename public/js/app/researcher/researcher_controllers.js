@@ -55,7 +55,9 @@ app.controller('ResearcherFormController', function ($scope,$state, researcher,F
 
     $scope.save = function(){
         ResearcherService.save($scope.researcher).success(function(response){
-
+            if ($state.current.name==='add'){
+                $state.go("list")
+            }
         })
     }
 
