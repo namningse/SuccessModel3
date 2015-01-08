@@ -1,0 +1,52 @@
+<div class="">
+    <h2>{{faculty.name_en}}</h2>
+
+
+    <formset>
+        <legend>Import</legend>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="well my-drop-zone" nv-file-drop nv-file-over="" uploader="ImportCSVuploader">
+                    Base drop zone
+                </div>
+            </div>
+        </div>
+
+    </formset>
+
+    <table ng-if="importResearchers" class="table table-bordered table-hover" >
+        <thead>
+        <tr>
+            <th>Index</th>
+            <th>Name</th>
+            <th>Faculty</th>
+            <th>Aciton</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr ng-repeat="researcher in importResearchers">
+            <td>{{$index}}</td>
+            <td>{{researcher.title}}{{researcher.firstname}} {{researcher.lastname}}</td>
+            <td>{{researcher.faculty.name_en}}<br/>{{researcher.faculty.name_th}}</td>
+            <td>
+                <button class="btn btn-danger" ng-click="removeImportResearcher($index)">remove</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+
+    <div class="row">
+
+        <div class="form-group col-sm-12">
+            <button ng-if="importResearchers" class="btn btn-primary" ng-click="confirmImport()" type="button">Confirm Import</button>
+            <a class="btn btn-default" ui-sref="list">Close</a>
+        </div>
+
+    </div>
+
+
+</div>

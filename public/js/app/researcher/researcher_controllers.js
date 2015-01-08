@@ -238,3 +238,42 @@ app.controller('ResearcherPhotoController',function($scope,$modal,FileUploader,R
         console.info('onCompleteAll');
     };
 });
+
+app.controller('ResearcherImportController',function($scope,ResearcherService){
+
+    $scope.importResearchers = null;
+
+    $scope.removeImportResearcher = function(index){
+        $scope.importResearchers.splice(index,1);
+        if ($scope.importResearchers.length == 0){
+            $scope.importResearchers = null;
+        }
+    }
+
+    $scope.confirmImport = function(){
+        ResearcherService.confirmImport($scope.importResearchers).success(function(response){
+            console.log(response)
+        })
+    }
+
+    var importCSVuploader = $scope.ImportCSVuploader = ResearcherService.getImportUploader();
+
+    importCSVuploader.filters.push({
+        name: 'csvFilter',
+        fn: function(item /*{File|FileLikeObject}*/, options) {
+            var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+            return '|csv|'.indexOf(type) !== -1;
+        }
+    });
+
+    importCSVuploader.onAfterAddingFile = function(fileItem) {
+        console.info('onAfterAddingFile', fileItem);
+        importCSVuploader.uploadItem(fileItem);
+    };
+
+    importCSVuploader.onSuccessItem = function(fileItem, response, status, headers) {
+        console.log(response.data)
+        $scope.importResearchers = response.data;
+    };
+
+});

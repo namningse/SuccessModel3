@@ -151,4 +151,36 @@ class ResearcherApiController extends ApiBaseController {
             ->get();
         return Response::json($researcher);
     }
+
+    public function postReadcsv(){
+        $storagePath = storage_path()."/temp/";
+        $importlist = [];
+        if(Input::hasFile('file')) {
+            $file = Input::file('file');
+            $t = $file->move($storagePath);
+            $reader = Excel::load($t)->get()->toArray();
+
+            foreach ($reader as $researcher){
+                $text = $researcher['faculty'];
+                $faculty = Faculty::whereNull('deleted_at')
+                    ->whereNested(function($query) use ($text) {
+                        $query->orWhere('name_th', '=~', ".*(?i)$text.*");
+                        $query->orWhere('name_en', '=~', ".*(?i)$text.*");
+
+                    })
+                    ->first();
+
+                $import_r = Researcher::firstOrNew($researcher);
+                $import_r->faculty =$faculty;
+                array_push($importlist,$import_r);
+            }
+            return $this->ok($importlist);
+
+        }
+        return $this->error(null,"No file upload");
+    }
+
+    public function postImport(){
+        return Input::all();
+    }
 }

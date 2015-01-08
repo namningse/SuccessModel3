@@ -80,6 +80,20 @@ app.factory('ResearcherService', function ($http,FileUploader) {
             });
             return uploader;
         },
+        getImportUploader : function($id){
+            uploader = new FileUploader({
+                url: '/admin/api/researcher/readcsv/'
+            });
+            return uploader;
+        },
+        confirmImport : function($researchers){
+            return $http({
+                url: '/admin/api/researcher/import',
+                method: 'post',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                data: $.param($researchers)
+            })
+        },
         getSearch : function($text){
             return $http({
                 url: '/admin/api/researcher/search/'+$text,

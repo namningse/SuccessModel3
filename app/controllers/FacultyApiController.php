@@ -104,7 +104,7 @@ class FacultyApiController extends ApiBaseController {
     }
 
     public function getSearchFaculty($text){
-        $fuculty = Faculty::whereNull('deleted_at')
+        $faculty = Faculty::whereNull('deleted_at')
             ->whereNested(function($query) use ($text) {
                 $query->orWhere('name_th', '=~', ".*(?i)$text.*");
                 $query->orWhere('name_en', '=~', ".*(?i)$text.*");
@@ -112,7 +112,7 @@ class FacultyApiController extends ApiBaseController {
             })
             ->take(10)
             ->get();
-        return Response::json($fuculty);
+        return Response::json($faculty);
     }
 
 

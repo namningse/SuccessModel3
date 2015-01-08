@@ -193,26 +193,28 @@ app.controller('ProjectFullTextController',function($scope,$modal,FileUploader,P
     $scope.project= project.data.data;
     $scope.fulltext = fulltext.data.data;
 
+    console.log(fulltext.data.data);
 
-    var uploader = $scope.uploader = ProjectService.getFullTextUploader($scope.project.id);
 
-    uploader.filters.push({
-        name: 'imageFilter',
+    var fullTextuploader = $scope.FullTextuploader = ProjectService.getFullTextUploader($scope.project.id);
+
+    fullTextuploader.filters.push({
+        name: 'docFilter',
         fn: function(item /*{File|FileLikeObject}*/, options) {
             var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
-            return '|pdf|'.indexOf(type) !== -1;
+            console.log(type);
+            return '|jpeg|pdf|doc|docx|vnd.ms-word.document.12|'.indexOf(type) !== -1;
         }
     });
-    uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
+    fullTextuploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
         console.info('onWhenAddingFileFailed', item, filter, options);
     };
-    uploader.onAfterAddingFile = function(fileItem) {
+    fullTextuploader.onAfterAddingFile = function(fileItem) {
         console.info('onAfterAddingFile', fileItem);
-
-        uploader.uploadItem(fileItem);
+        fullTextuploader.uploadItem(fileItem);
     };
 
-    uploader.onSuccessItem = function(fileItem, response, status, headers) {
+    fullTextuploader.onSuccessItem = function(fileItem, response, status, headers) {
         console.info('onSuccessItem', fileItem, response, status, headers);
         $scope.fulltext = response.data;
     };

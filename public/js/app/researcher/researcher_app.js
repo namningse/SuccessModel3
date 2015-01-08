@@ -86,6 +86,11 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
 
             }
+        })
+        .state('import',{
+            url : '/import',
+            templateUrl: '/partial/admin/researcher/researcher_import.html',
+            controller: 'ResearcherImportController'
         });
 
 
