@@ -82,7 +82,7 @@ app.factory('ResearcherService', function ($http,FileUploader) {
         },
         getImportUploader : function($id){
             uploader = new FileUploader({
-                url: '/admin/api/researcher/readcsv/'
+                url: '/admin/api/researcher/upload-import-file'
             });
             return uploader;
         },

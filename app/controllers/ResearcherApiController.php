@@ -152,7 +152,7 @@ class ResearcherApiController extends ApiBaseController {
         return Response::json($researcher);
     }
 
-    public function postReadcsv(){
+    public function postUploadImportFile(){
         $storagePath = storage_path()."/temp/";
         $importlist = [];
         if(Input::hasFile('file')) {
