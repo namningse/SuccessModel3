@@ -156,7 +156,7 @@ class ProjectApiController extends ApiBaseController {
         $id = (int)$id;
         $project = Project::find((int)$id);
 
-        $fulltext = $project->fulltext();
+        $fulltext = $project->fulltext()->first();
 
         return $this->ok($fulltext);
     }
