@@ -9,7 +9,7 @@ class ProjectMobileApiController extends ApiBaseController {
 
     public function getView($id){
         $id = (int) $id;
-        $project = Project::with(['faculty.logo','researchers','cover'])->find($id);
+        $project = Project::with(['faculty.logo','researchers','cover','fulltext'])->find($id);
         if ($project){
             return $this->ok($project);
         }else {
