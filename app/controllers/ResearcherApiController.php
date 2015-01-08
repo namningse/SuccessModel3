@@ -181,6 +181,25 @@ class ResearcherApiController extends ApiBaseController {
     }
 
     public function postImport(){
-        return Input::all();
+
+        if (Input::has('researchers')){
+            $researchers = Input::get('researchers');
+            $savedResearchers = [];
+            foreach($researchers as $researcher){
+                $faculty = $researcher['faculty'];
+                $faculty =  Faculty::find($faculty['id']);
+                $researcher['faculty'] = null;
+                $r = Researcher::firstOrNew($researcher);
+                $r->save();
+
+                $r->faculty()->associate($faculty)->save();
+
+                array_push($savedResearchers,$r);
+            }
+
+
+            return $this->ok($savedResearchers,"Researchers have been import successfully");
+        }
+
     }
 }

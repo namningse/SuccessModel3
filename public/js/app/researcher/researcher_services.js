@@ -87,6 +87,7 @@ app.factory('ResearcherService', function ($http,FileUploader) {
             return uploader;
         },
         confirmImport : function($researchers){
+
             return $http({
                 url: '/admin/api/researcher/import',
                 method: 'post',

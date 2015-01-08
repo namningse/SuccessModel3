@@ -251,7 +251,12 @@ app.controller('ResearcherImportController',function($scope,ResearcherService){
     }
 
     $scope.confirmImport = function(){
-        ResearcherService.confirmImport($scope.importResearchers).success(function(response){
+        console.log($scope.importResearchers);
+        var uploadResearchers = {
+            'researchers' : $scope.importResearchers
+        }
+
+        ResearcherService.confirmImport(uploadResearchers).success(function(response){
             console.log(response)
         })
     }
