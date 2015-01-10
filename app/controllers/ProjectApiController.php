@@ -26,7 +26,7 @@ class ProjectApiController extends ApiBaseController {
             $project->update(Input::all());
 
         }else {
-            $project = Project::firstOrNew(Input::all());
+            $project = Project::firstOrNew(Input::except(['faculty']));
         }
         $project->save();
 
@@ -77,7 +77,7 @@ class ProjectApiController extends ApiBaseController {
 
             $photo = $this->createPhoto($project->id, $filename, $filetype, $base64);
             $project->cover()->save($photo);
-            $project->photos()->save($photo);
+            //$project->photos()->save($photo);
 
             return $this->ok($photo, "Cover Photo has been updated.");
         }

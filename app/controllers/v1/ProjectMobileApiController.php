@@ -27,8 +27,8 @@ class ProjectMobileApiController extends ApiBaseController {
     public function getPhotos($id){
         $id = (int) $id;
         $project = Project::find($id);
-        $cover = $project->photos()->get();
-        return $this->ok($cover);
+        $photos = $project->photos()->get();
+        return $this->ok($photos);
     }
 
     public function getSearchProject($text){
