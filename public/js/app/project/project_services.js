@@ -85,9 +85,22 @@ app.factory('ProjectService', function ($http,FileUploader) {
                 method: 'get',
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             })
+        },
+        postAddVideo : function($id,video){
+            return $http({
+                url: '/admin/api/project/add-video/'+$id,
+                method: 'post',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                data : $.param(video)
+            })
+        },
+        postDeleteVideo : function($id,video){
+            return $http({
+                url: '/admin/api/project/delete-video/'+$id,
+                method: 'post',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                data : $.param(video)
+            })
         }
-
-
-
     }
 });

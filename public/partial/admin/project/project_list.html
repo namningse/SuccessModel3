@@ -10,7 +10,7 @@
         <thead>
         <tr>
             <th>Id</th>
-            <th>Name English</th>
+            <th width="400">Name English</th>
             <th>Faculty</th>
             <th>Aciton</th>
         </tr>
@@ -24,11 +24,13 @@
             <td>
 
                 <div style="display: block;">
-                    <a class="btn btn-info" ui-sref="fulltext({id : project.id})">Fulltext</a>
-                    <a class="btn btn-info" ui-sref="cover({id : project.id})">Cover</a>
-                    <a class="btn btn-default" ui-sref="photo({id : project.id})">Photo</a>
-                    <a class="btn btn-primary" ui-sref="edit({ id : project.id})">Edit</a>
-                    <button class="btn btn-danger" ng-click="open('lg',project)">Delete</button>
+                    <div class="btn-group" role="group" aria-label="...">
+                        <a class="btn btn-info" ui-sref="fulltext({id : project.id})">Fulltext</a>
+                        <a class="btn btn-info" ui-sref="cover({id : project.id})">Cover</a>
+                        <a class="btn btn-default" ui-sref="photo({id : project.id})">Photo</a>
+                        <a class="btn btn-primary" ui-sref="edit({ id : project.id})">Edit</a>
+                        <button class="btn btn-danger" ng-click="open('sm',project)">Delete</button>
+                    </div>
                 </div>
 
             </td>

@@ -33,6 +33,10 @@ class Project extends NeoEloquent{
         return $this->hasMany('Researcher','HAS');
     }
 
+    public function videos(){
+        return $this->hasMany("Video","VIDEO");
+    }
+
 
     public function setFaculty($faculty){
         if ($faculty == null){

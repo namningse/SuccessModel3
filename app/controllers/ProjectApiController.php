@@ -9,7 +9,7 @@ class ProjectApiController extends ApiBaseController {
 
     public function getView($id){
         $id = (int) $id;
-        $project = Project::with(['faculty','researchers'])->find($id);
+        $project = Project::with(['faculty','researchers','videos'])->find($id);
         if ($project){
             return $this->ok($project);
         }else {
@@ -55,6 +55,26 @@ class ProjectApiController extends ApiBaseController {
 
         $id = $project->id;
         return $this->ok($project,"Project [$id] has been save successfully.");
+    }
+
+    public function postAddVideo($id){
+        $project = Project::find((int)$id);
+
+        $v = Video::firstOrNew(Input::all());
+        $v->save();
+        $project->videos()->save($v);
+
+        return $this->ok($v);
+
+    }
+
+    public function postDeleteVideo($id){
+        $project = Project::find((int)$id);
+        $v = Video::findOrFail((int)Input::get('id'));
+        $project->videos()->detach($v->id);
+        $v->delete();
+
+        return $this->ok($v);
     }
 
     public function postDelete(){

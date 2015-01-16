@@ -69,6 +69,46 @@
                 </div>
             </div>
         </formset>
+
+
+        <formset>
+            <legend>Project Videos</legend>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">รายการวิดีโอ (youtube)</label>
+
+                <div class="col-sm-10">
+
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" ng-click="addVideo(video)" type="button">Add</button>
+                        </span>
+
+                        <input type="text" ng-model="video" placeholder="Youtube Link" class="form-control">
+                    </div>
+
+                    <table class="table table-bordered table-hover" style="margin-top: 10px;">
+                        <thead>
+                        <tr>
+                            <th>Link</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr ng-repeat="video in project.videos">
+                            <td>{{video.url}}</td>
+                            <td>
+                                <button class="btn btn-danger" ng-click="deleteVideo(video)">Delete</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </formset>
+
+
         <formset>
             <legend>
                 Project Detail

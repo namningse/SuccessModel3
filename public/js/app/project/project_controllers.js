@@ -81,7 +81,37 @@ app.controller('ProjectFormController', function ($scope,$state, project,Faculty
 
             console.log($scope.project.researchers);
         }
+    }
 
+    $scope.addVideo = function(value){
+        if (value) {
+
+            if(!$scope.project.videos){
+                $scope.project.videos = [];
+            }
+
+            video = {
+                url : value
+            }
+
+            ProjectService.postAddVideo($scope.project.id,video).success(function(response){
+                $scope.project.videos.push(response.data);
+                $scope.video = "";
+            })
+        }
+    }
+
+    $scope.deleteVideo = function(video){
+
+        if(confirm("Do you want to delete this video")){
+
+            ProjectService.postDeleteVideo($scope.project.id,video).success(function(response){
+                //video = response.data
+                console.log($scope.project.videos.indexOf(video));
+                $scope.project.videos.splice($scope.project.videos.indexOf(video),1);
+            })
+
+        }
     }
 
 });
