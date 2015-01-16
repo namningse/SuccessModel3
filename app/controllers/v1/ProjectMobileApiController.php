@@ -67,4 +67,21 @@ class ProjectMobileApiController extends ApiBaseController {
 
         return $this->ok($fulltext);
     }
+
+    public function getAllVideo(){
+        $projects = Project::with(['videos'])->get();
+        $videos = [];
+
+        foreach($projects as $project){
+            $p_videos = $project->videos()->with([])->get();
+            $project->executive_summary = "";
+            foreach($p_videos as $v){
+                $v->project = $project;
+                array_push($videos,$v);
+            }
+        }
+
+        return $this->ok($videos);
+
+    }
 }
