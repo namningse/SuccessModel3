@@ -11,7 +11,7 @@ app.controller('NewsListController', function ($scope,$state,FileUploader,$modal
     $scope.open = function (size,news) {
 
         var modalInstance = $modal.open({
-            templateUrl: '/partial/admin/news/faculty_delete.html',
+            templateUrl: '/partial/admin/news/news_delete.html',
             controller: 'NewsDeleteController',
             size: size,
             resolve: {
