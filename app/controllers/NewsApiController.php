@@ -3,9 +3,38 @@
 class NewsApiController extends ApiBaseController {
 
 	public function getIndex(){
-        $newsList = News::with([])->get();
-        return $this->ok($newsList);
+        $skip=0;
+        $take=10;
+        $newsList = News::with([])->take($take)->skip($skip)->get();
+
+        $data = [
+            "data" => $newsList,
+            "skip" => $skip,
+            "take" => $take,
+            "count" => $newsList->count(),
+            "total" => News::all()->count()
+        ];
+
+        return $this->ok($data);
 	}
+
+    public function postFilter(){
+
+        $skip=Input::get('skip');
+        $take=Input::get('take');
+        $newsList = News::with([])->take($take)->skip($skip)->get();
+
+        $data = [
+            "data" => $newsList,
+            "skip" => $skip,
+            "take" => $take,
+            "count" => $newsList->count(),
+            "total" => News::all()->count()
+        ];
+
+        return $this->ok($data);
+
+    }
 
     public function getView($id){
         $id = (int) $id;

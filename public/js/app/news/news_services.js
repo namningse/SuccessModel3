@@ -9,6 +9,14 @@ app.factory('NewsService', function ($http,FileUploader) {
         getAll : function(){
             return $http.get('/admin/api/news');
         },
+        postFilter : function(data){
+            return $http({
+                url: '/admin/api/news/filter',
+                method: 'POST',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                data: $.param(data)
+            });
+        },
 
         getById : function($id){
             return $http.get('/admin/api/news/view/'+$id);

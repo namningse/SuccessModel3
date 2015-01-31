@@ -5,8 +5,29 @@
 app.controller('NewsListController', function ($scope,$state,FileUploader,$modal,newsList,NewsService) {
 
     //console.log("NewsListController");
+    var datatables = newsList.data.data;
+    $scope.dt = datatables;
+    $scope.newsList = datatables.data;
+    $scope.dt.data = null;
+    $scope.dt.skip = parseInt( $scope.dt.skip );
+    $scope.dt.take = parseInt( $scope.dt.take);
 
-    $scope.newsList = newsList.data.data;
+    $scope.currentPage = 1;
+
+    $scope.pageChange = function(){
+        console.log('Page changed to: ' + $scope.currentPage)
+        var dt = $scope.dt;
+        dt.skip = $scope.currentPage-1;
+        NewsService.postFilter(dt).success(function(response){
+            console.log(response);
+            datatables = response.data;
+            $scope.dt = datatables;
+            $scope.newsList = datatables.data;
+            $scope.dt.data = null;
+            $scope.dt.skip = parseInt( $scope.dt.skip );
+            $scope.dt.take = parseInt( $scope.dt.take);
+        });
+    }
 
     $scope.open = function (size,news) {
 
