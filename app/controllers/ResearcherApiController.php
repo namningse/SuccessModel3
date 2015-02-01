@@ -3,12 +3,39 @@
 class ResearcherApiController extends ApiBaseController {
 
 	public function getIndex(){
-        $researchers = Researcher::with(['faculty'])->get();
 
+        $skip=0;
+        $take=10;
+        $projects = Researcher::with(['faculty'])->take($take)->skip($skip)->get();
 
+        $data = [
+            "data" => $projects,
+            "skip" => $skip,
+            "take" => $take,
+            "count" => $projects->count(),
+            "total" => Researcher::all()->count()
+        ];
 
-        return $this->ok($researchers);
+        return $this->ok($data);
 	}
+
+    public function postFilter(){
+
+        $skip=Input::get('skip');
+        $take=Input::get('take');
+        $projects = Researcher::with(['faculty'])->take($take)->skip($skip)->get();
+
+        $data = [
+            "data" => $projects,
+            "skip" => $skip,
+            "take" => $take,
+            "count" => $projects->count(),
+            "total" => Researcher::all()->count()
+        ];
+
+        return $this->ok($data);
+
+    }
 
     public function getView($id){
         $id = (int) $id;

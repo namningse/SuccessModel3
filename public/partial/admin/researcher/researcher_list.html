@@ -34,4 +34,16 @@
         </tbody>
     </table>
 
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="pull-left">
+                Showing {{dt.skip * dt.take + 1}} to {{dt.skip * dt.take + dt.count}} of {{dt.total}} entries
+            </div>
+            <div class="pull-right">
+                <pagination ng-change="pageChange()" total-items="dt.total" items-per-page="dt.take" ng-model="currentPage" class="pagination-sm" boundary-links="true" rotate="false"></pagination>
+            </div>
+
+        </div>
+    </div>
+
 </div>

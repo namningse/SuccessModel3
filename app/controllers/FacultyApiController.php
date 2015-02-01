@@ -3,13 +3,39 @@
 class FacultyApiController extends ApiBaseController {
 
 	public function getIndex(){
-        $faculties = Faculty::with([])->get();
+        $skip=0;
+        $take=0;
 
+        $faculties = Faculty::with([])->take($take)->skip($skip)->get();
 
+        $data = [
+            "data" => $faculties,
+            "skip" => $skip,
+            "take" => $take,
+            "count" => $faculties->count(),
+            "total" => Faculty::all()->count()
+        ];
 
-        return $this->ok($faculties);
+        return $this->ok($data);
 	}
 
+    public function postFilter(){
+
+        $skip=Input::get('skip');
+        $take=Input::get('take');
+        $faculties = Faculty::with([])->take($take)->skip($skip)->get();
+
+        $data = [
+            "data" => $faculties,
+            "skip" => $skip,
+            "take" => $take,
+            "count" => $faculties->count(),
+            "total" => Faculty::all()->count()
+        ];
+
+        return $this->ok($data);
+
+    }
     public function getView($id){
         $id = (int) $id;
         $faculty = Faculty::with([])->find($id);

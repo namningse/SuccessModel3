@@ -10,6 +10,15 @@ app.factory('FacultyService', function ($http,FileUploader) {
             return $http.get('/admin/api/faculty');
         },
 
+        postFilter : function(data){
+            return $http({
+                url: '/admin/api/faculty/filter',
+                method: 'POST',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                data: $.param(data)
+            });
+        },
+
         getById : function($id){
             return $http.get('/admin/api/faculty/view/'+$id);
         },

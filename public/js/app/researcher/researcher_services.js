@@ -9,7 +9,14 @@ app.factory('ResearcherService', function ($http,FileUploader) {
         getAll : function(){
             return $http.get('/admin/api/researcher');
         },
-
+        postFilter : function(data){
+            return $http({
+                url: '/admin/api/researcher/filter',
+                method: 'POST',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                data: $.param(data)
+            });
+        },
         getById : function($id){
             return $http.get('/admin/api/researcher/view/'+$id);
         },

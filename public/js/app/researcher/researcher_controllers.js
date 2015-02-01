@@ -4,9 +4,29 @@
 
 app.controller('ResearcherListController', function ($scope,$state,$modal,researcherList,ResearcherService) {
 
-    //console.log("ResearcherListController");
+    var datatables = researcherList.data.data;
 
-    $scope.researchers = researcherList.data.data;
+    $scope.dt = datatables;
+    $scope.researchers = datatables.data;
+    $scope.dt.data = null;
+    $scope.dt.skip = parseInt( $scope.dt.skip );
+    $scope.dt.take = parseInt( $scope.dt.take);
+
+    $scope.currentPage = 1;
+
+    $scope.pageChange = function(){
+        var dt = $scope.dt;
+        dt.skip = $scope.currentPage-1;
+        ResearcherService.postFilter(dt).success(function(response){
+            console.log(response);
+            datatables = response.data;
+            $scope.dt = datatables;
+            $scope.researchers = datatables.data;
+            $scope.dt.data = null;
+            $scope.dt.skip = parseInt( $scope.dt.skip );
+            $scope.dt.take = parseInt( $scope.dt.take);
+        });
+    }
 
     $scope.open = function (size,researcher) {
 

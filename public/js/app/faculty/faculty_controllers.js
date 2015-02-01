@@ -4,9 +4,31 @@
 
 app.controller('FacultyListController', function ($scope,$state,$modal,facultyList,FacultyService) {
 
-    //console.log("FacultyListController");
+    //console.log("NewsListController");
+    var datatables = facultyList.data.data;
 
-    $scope.faculties = facultyList.data.data;
+    $scope.dt = datatables;
+    $scope.faculties = datatables.data;
+    $scope.dt.data = null;
+    $scope.dt.skip = parseInt( $scope.dt.skip );
+    $scope.dt.take = parseInt( $scope.dt.take);
+
+    $scope.currentPage = 1;
+
+    $scope.pageChange = function(){
+        console.log('Page changed to: ' + $scope.currentPage)
+        var dt = $scope.dt;
+        dt.skip = $scope.currentPage-1;
+        NewsService.postFilter(dt).success(function(response){
+            console.log(response);
+            datatables = response.data;
+            $scope.dt = datatables;
+            $scope.faculties = datatables.data;
+            $scope.dt.data = null;
+            $scope.dt.skip = parseInt( $scope.dt.skip );
+            $scope.dt.take = parseInt( $scope.dt.take);
+        });
+    }
 
     $scope.open = function (size,faculty) {
 
