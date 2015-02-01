@@ -6,6 +6,7 @@ app.controller('NewsListController', function ($scope,$state,FileUploader,$modal
 
     //console.log("NewsListController");
     var datatables = newsList.data.data;
+
     $scope.dt = datatables;
     $scope.newsList = datatables.data;
     $scope.dt.data = null;

@@ -3,9 +3,37 @@
 class ProjectApiController extends ApiBaseController {
 
 	public function getIndex(){
-        $projects = Project::with(['faculty','researchers'])->get();
-        return $this->ok($projects);
-	}
+        $skip=0;
+        $take=10;
+        $projects = Project::with(['faculty','researchers'])->take($take)->skip($skip)->get();
+
+        $data = [
+            "data" => $projects,
+            "skip" => $skip,
+            "take" => $take,
+            "count" => $projects->count(),
+            "total" => Project::all()->count()
+        ];
+
+        return $this->ok($data);	}
+
+    public function postFilter(){
+
+        $skip=Input::get('skip');
+        $take=Input::get('take');
+        $projects = Project::with(['faculty','researchers'])->take($take)->skip($skip)->get();
+
+        $data = [
+            "data" => $projects,
+            "skip" => $skip,
+            "take" => $take,
+            "count" => $projects->count(),
+            "total" => Project::all()->count()
+        ];
+
+        return $this->ok($data);
+
+    }
 
     public function getView($id){
         $id = (int) $id;

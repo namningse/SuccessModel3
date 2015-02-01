@@ -10,6 +10,16 @@ app.factory('ProjectService', function ($http,FileUploader) {
             return $http.get('/admin/api/project');
         },
 
+        postFilter : function(data){
+            return $http({
+                url: '/admin/api/project/filter',
+                method: 'POST',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                data: $.param(data)
+            });
+        },
+
+
         getById : function($id){
             return $http.get('/admin/api/project/view/'+$id);
         },

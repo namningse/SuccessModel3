@@ -5,8 +5,30 @@
 app.controller('ProjectListController', function ($scope,$state,$modal,projectList,ProjectService) {
 
     //console.log("ProjectListController");
+    var datatables = projectList.data.data;
 
-    $scope.projects = projectList.data.data;
+    $scope.dt = datatables;
+    $scope.projects = datatables.data;
+    $scope.dt.data = null;
+    $scope.dt.skip = parseInt( $scope.dt.skip );
+    $scope.dt.take = parseInt( $scope.dt.take);
+
+    $scope.currentPage = 1;
+
+    $scope.pageChange = function(){
+        var dt = $scope.dt;
+        dt.skip = $scope.currentPage-1;
+        ProjectService.postFilter(dt).success(function(response){
+            console.log(response);
+            datatables = response.data;
+            $scope.dt = datatables;
+            $scope.projects = datatables.data;
+            $scope.dt.data = null;
+            $scope.dt.skip = parseInt( $scope.dt.skip );
+            $scope.dt.take = parseInt( $scope.dt.take);
+        });
+    }
+
 
     $scope.open = function (size,project) {
 
